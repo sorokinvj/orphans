@@ -1,4 +1,5 @@
 import React, { Component, Fragment } from 'react'
+import fetch from 'isomorphic-unfetch';
 
 const WP_URL = 'http://178.62.114.149'
 
