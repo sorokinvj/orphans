@@ -21,6 +21,7 @@ module.exports = {
   ],
   rules: {
     "strict": 0,
-    "jsx-a11y/click-events-have-key-events": "off"
+    "jsx-a11y/click-events-have-key-events": "off",
+    "jsx-a11y/anchor-is-valid": "off"
   },
 };

@@ -1,32 +1,68 @@
 import React from 'react';
-import Link from 'next/link';
 import PropTypes from 'prop-types';
+import styled from 'styled-components';
+
+import { Container } from '@bootstrap-styled/v4';
 import Popup from 'reactjs-popup';
 import Logo from './Logo';
 import Burger from './Burger';
 import Menu from './Menu';
 // import LangSelector from './LangSelector';
 
-// const Navbar = styled.nav`
-
-// `;
-
 const contentStyle = {
-  background: 'rgba(255,255,255,0)',
-  width: '80%',
-  border: 'none',
+  position: 'relative',
+  background: 'rgb(255, 255, 255)',
+  width: 'auto',
+  height: '100%',
+  margin: '7rem 0 0 auto',
+  border: '0',
+  padding: '0',
 };
 
+const Navbar = styled.nav`
+  height: 7rem;
+  background: #0D2C54;
+  display: flex;
+
+  .container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    @media (max-width:768px) {
+      .menu {
+        display: none;
+      }
+    }
+  }
+  // стили для мобильного меню
+  .popup-overlay {
+    height: 50vh;
+    .popup-content {
+    }
+  }
+
+`;
+
 const Nav = () => (
-  <Popup
-    modal
-    overlayStyle={{ background: 'rgba(255,255,255,0.98' }}
-    contentStyle={contentStyle}
-    closeOnDocumentClick={false}
-    trigger={open => <Burger open={open} />}
-  >
-    {close => <Menu close={close} />}
-  </Popup>
+  <Navbar>
+    <Container>
+
+      <Logo />
+      <Menu />
+
+      {/* burger button */}
+    </Container>
+    <Popup
+      modal
+      closeOnDocumentClick
+      contentStyle={contentStyle}
+      trigger={open => <Burger open={open} />}
+      position="top left"
+    >
+      {close => <Menu close={close} />}
+    </Popup>
+  </Navbar>
+
 );
 
 Nav.propTypes = {
