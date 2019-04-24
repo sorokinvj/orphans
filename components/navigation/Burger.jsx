@@ -7,15 +7,13 @@ const BurgerButton = styled.div`
     @media (min-width: 769px) {
       display: none;
     }
-
     position: relative;
     top: 12px;
+    right: 1rem;
 
     .burger-menu {
       display: inline-block;
       cursor: pointer;
-      position: fixed;
-      right: 20px;
       z-index: 9999;
       background: transparent;
       padding: 10px;

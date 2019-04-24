@@ -7,10 +7,10 @@ const Flags = styled.div`
     color: white;
     font-weight: bold;
     font-size: 2rem;
-    margin: 0.5rem 6rem 0 0;
+    margin: 0.3rem 0rem 0 0;
     img {
-        width: 2.5rem;
-        margin: 0 1rem;
+      width: 2.5rem;
+      margin: 0 1rem;
     }
 `;
 
