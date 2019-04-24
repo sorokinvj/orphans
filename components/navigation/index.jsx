@@ -7,7 +7,7 @@ import Popup from 'reactjs-popup';
 import Logo from './Logo';
 import Burger from './Burger';
 import Menu from './Menu';
-// import LangSelector from './LangSelector';
+import LangSelector from './LangSelector';
 
 const contentStyle = {
   position: 'relative',
@@ -37,21 +37,18 @@ const Navbar = styled.nav`
   // стили для мобильного меню
   .popup-overlay {
     height: 50vh;
-    .popup-content {
-    }
   }
-
 `;
 
 const Nav = () => (
   <Navbar>
     <Container>
-
       <Logo />
       <Menu />
-
-      {/* burger button */}
+      <LangSelector />
     </Container>
+
+    {/* burger button and mobile menu*/}
     <Popup
       modal
       closeOnDocumentClick
