@@ -1,11 +1,13 @@
 import App, { Container } from 'next/app';
 import React from 'react';
+import BootstrapProvider from '@bootstrap-styled/provider/lib/BootstrapProvider';
 import cookies from 'next-cookies';
 import MobileDetect from 'mobile-detect';
 import Nav from '../components/navigation';
 import Footer from '../components/footer';
 import GeneralHead from '../components/GeneralHead';
 import GlobalStyle from '../components/globals';
+
 
 class MyApp extends App {
   static async getInitialProps({ Component, ctx }) {
@@ -53,11 +55,13 @@ class MyApp extends App {
     // console.log("_app", this.props)
     return (
       <Container>
-        <GlobalStyle />
-        <GeneralHead />
-        <Nav cookieConsent={cookieConsent} />
-        <Component {...pageProps} phone={phone} tablet={tablet} />
-        <Footer />
+        <BootstrapProvider>
+          <GlobalStyle />
+          <GeneralHead />
+          <Nav cookieConsent={cookieConsent} />
+          <Component {...pageProps} phone={phone} tablet={tablet} />
+          <Footer />
+        </BootstrapProvider>
       </Container>
     );
   }

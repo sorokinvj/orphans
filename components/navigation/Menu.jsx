@@ -16,10 +16,9 @@ const Links = styled.div`
     }
     li {
       color: white;
-      font-size: 1.8rem;
+      font-size: 1.6rem;
       text-transform: uppercase;
       display: inline-block;
-      font-weight: bold;
       letter-spacing: 1px;
       margin-right: 4rem;
       font-family: 'PT Sans';
