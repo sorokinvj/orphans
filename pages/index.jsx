@@ -15,13 +15,17 @@ import LargeCard from '../components/cards/LargeCard';
 const WP_URL = 'http://178.62.114.149';
 
 const MainPage = styled.div`
+  padding: 8rem 0;
+
   h1 {
     font-family: 'PT Sans';
     font-size: 4.2rem;
     font-weight: bold;
     line-height:5.6rem;
     color: #0D2C54;
+    margin-bottom: 6rem;
   }
+
 `;
 
 class Index extends React.Component {
@@ -47,12 +51,11 @@ class Index extends React.Component {
             </Col>
           </Row>
           <Row theme={{ '$grid-gutter-width': '50px' }}>
-            {posts.map(post => <SmallCard item={post} />)}
-            {/* {posts.map((post, index) => {
-              if (index === 0 || index <= 4 || index > 6) return <SmallCard item={post} />;
+            {posts.map((post, index) => {
               if (index === 1) return <LargeCard item={post} />;
               if (index === 5 || index === 6) return <MediumCard item={post} />;
-            })} */}
+              return <SmallCard item={post} />;
+            })}
           </Row>
         </Container>
       </MainPage>

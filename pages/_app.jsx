@@ -48,14 +48,21 @@ class MyApp extends App {
     }
   }
 
+
   render() {
+    const theme = {
+      '$grid-gutter-width': '50px',
+    };
+
     const {
       Component, pageProps, phone, tablet, cookieConsent,
     } = this.props;
+
     // console.log("_app", this.props)
+    
     return (
       <Container>
-        <BootstrapProvider>
+        <BootstrapProvider injectGlobal reset theme={theme}>
           <GlobalStyle />
           <GeneralHead />
           <Nav cookieConsent={cookieConsent} />
