@@ -9,8 +9,8 @@ const handle = app.getRequestHandler()
 app.prepare().then(() => {
   const server = express()
 
-  server.get('/post/:slug', (req, res) => {
-    return app.render(req, res, '/post', { slug: req.params.slug })
+  server.get('/news/:slug', (req, res) => {
+    return app.render(req, res, '/news', { slug: encodeURIComponent(req.params.slug) })
   })
 
   server.get('*', (req, res) => {

@@ -5,21 +5,14 @@ import { Card, Title, Wallpaper } from './styles';
 import { Col } from '@bootstrap-styled/v4';
 
 const LargeCard = ({ item }) => (
-  <Col lg="8" md="8" xs="12">
-    <Link href={`/post/${item.slug}`}>
+  <Col lg="8" md="6" xs="12">
+    <Link href={`/news/${item.slug}`}>
       <a>
         <Card>
-          {/* <Tags>
-            {item.tags.map(tag => (
-              <Tag>
-                {tag}
-              </Tag>
-            ))}
-          </Tags> */}
           <Title>
-            {item.title.rendered}
+            {item.title}
           </Title>
-          <Wallpaper src={item.wallpaper} />
+          <Wallpaper src={item.media.medium_large} />
         </Card>
       </a>
     </Link>

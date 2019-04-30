@@ -1,7 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 import fetch from 'isomorphic-unfetch';
-import Link from 'next/link';
+import getConfig from 'next/config';
+
 import {
   Container,
   Row,
@@ -12,7 +13,7 @@ import SmallCard from '../components/cards/SmallCard';
 import MediumCard from '../components/cards/MediumCard';
 import LargeCard from '../components/cards/LargeCard';
 
-const WP_URL = 'http://178.62.114.149';
+const { publicRuntimeConfig } = getConfig();
 
 const MainPage = styled.div`
   padding: 8rem 0;
@@ -30,8 +31,9 @@ const MainPage = styled.div`
 
 class Index extends React.Component {
   static async getInitialProps() {
+    const { WP_URL } = publicRuntimeConfig;
     const posts = await fetch(
-      `${WP_URL}/wp-json/wp/v2/posts/`,
+      `${WP_URL}/wp-json/better-rest-endpoints/v1/posts?content=false&acf=false`,
     ).then(res => res.json())
       .catch(err => console.log(err));
     return { posts };
@@ -43,7 +45,7 @@ class Index extends React.Component {
     return (
       <MainPage>
         <Container>
-          <Row>
+          <Row theme={{ '$grid-gutter-width': '50px' }}>
             <Col lg="12" md="12" xs="12">
               <h1 className="text-center">
                 Истории
@@ -52,9 +54,9 @@ class Index extends React.Component {
           </Row>
           <Row theme={{ '$grid-gutter-width': '50px' }}>
             {posts.map((post, index) => {
-              if (index === 1) return <LargeCard item={post} />;
-              if (index === 5 || index === 6) return <MediumCard item={post} />;
-              return <SmallCard item={post} />;
+              if (index === 1) return <LargeCard item={post} key={post.title} />;
+              if (index === 5 || index === 6) return <MediumCard item={post} key={post.title} />;
+              return <SmallCard item={post} key={post.title} />;
             })}
           </Row>
         </Container>

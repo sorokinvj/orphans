@@ -50,14 +50,14 @@ class MyApp extends App {
 
 
   render() {
-    const theme = {
-      '$grid-gutter-width': '50px',
-    };
-
+    
     const {
       Component, pageProps, phone, tablet, cookieConsent,
     } = this.props;
-
+    
+    const theme = {
+      '$grid-gutter-width': tablet || phone ? '30px' : '50px',
+    };
     // console.log("_app", this.props)
     
     return (

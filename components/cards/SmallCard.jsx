@@ -5,14 +5,14 @@ import { Col } from '@bootstrap-styled/v4';
 import { Card, Title, Wallpaper } from './styles';
 
 const SmallCard = ({ item }) => (
-  <Col lg="4" md="4" xs="12">
-    <Link href={`/post/${item.slug}`}>
+  <Col lg="4" md="6" xs="12">
+    <Link href={`/news/${item.slug}`}>
       <a>
         <Card>
           <Title>
-            {item.title.rendered}
+            {item.title}
           </Title>
-          <Wallpaper src={item.wallpaper} />
+          <Wallpaper src={item.media.medium} />
         </Card>
       </a>
     </Link>

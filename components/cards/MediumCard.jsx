@@ -6,13 +6,13 @@ import { Card, Title, Wallpaper } from './styles';
 
 const MediumCard = ({ item }) => (
   <Col lg="6" md="6" xs="12">
-    <Link href={`/post/${item.slug}`}>
+    <Link href={`/news/${item.slug}`}>
       <a>
         <Card>
           <Title>
-            {item.title.rendered}
+            {item.title}
           </Title>
-          <Wallpaper src={item.wallpaper} />
+          <Wallpaper src={item.media.medium_large} />
         </Card>
       </a>
     </Link>

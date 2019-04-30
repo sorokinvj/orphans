@@ -34,17 +34,17 @@ const Links = styled.div`
 const Menu = ({ close }) => (
   <Links className="menu">
     <ul>
-      <Link>
+      <Link href="/">
         <a>
           <li>Истории</li>
         </a>
       </Link>
-      <Link>
+      <Link href="/help">
         <a>
           <li>Горячая линия</li>
         </a>
       </Link>
-      <Link>
+      <Link href="/about">
         <a>
           <li>О проекте</li>
         </a>
