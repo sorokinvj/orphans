@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import fetch from 'isomorphic-unfetch';
 import getConfig from 'next/config';
+import { i18n, withNamespaces } from '../i18n'
 
 import {
   Container,
@@ -36,7 +37,7 @@ class Index extends React.Component {
       `${WP_URL}/wp-json/better-rest-endpoints/v1/posts?content=false&acf=false`,
     ).then(res => res.json())
       .catch(err => console.log(err));
-    return { posts };
+    return { posts, namespacesRequired: ['common'] };
   }
 
   render() {
@@ -48,8 +49,13 @@ class Index extends React.Component {
           <Row theme={{ '$grid-gutter-width': '50px' }}>
             <Col lg="12" md="12" xs="12">
               <h1 className="text-center">
-                Истории
+                {this.props.t('title')}
               </h1>
+              <button
+          onClick={() => i18n.changeLanguage(i18n.language === 'en' ? 'de' : 'en')}
+        >
+          Change locale
+        </button>
             </Col>
           </Row>
           <Row theme={{ '$grid-gutter-width': '50px' }}>
@@ -65,4 +71,4 @@ class Index extends React.Component {
   }
 }
 
-export default Index;
+export default withNamespaces('common')(Index);

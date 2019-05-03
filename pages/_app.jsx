@@ -7,6 +7,7 @@ import Nav from '../components/navigation';
 import Footer from '../components/footer';
 import GeneralHead from '../components/GeneralHead';
 import GlobalStyle from '../components/globals';
+import { appWithTranslation } from '../i18n'
 
 
 class MyApp extends App {
@@ -74,4 +75,4 @@ class MyApp extends App {
   }
 }
 
-export default MyApp;
+export default appWithTranslation(MyApp);
