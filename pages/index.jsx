@@ -35,20 +35,20 @@ async function getPosts(lang) {
   return fetch(
     `${WP_URL}/wp-json/better-rest-endpoints/v1/posts?content=false&acf=false&lang=${lang}`,
   ).then(res => res.json())
-   .catch(err => console.log(err));
+    .catch(err => console.log(err));
 }
 
 class Index extends React.Component {
   static async getInitialProps() {
-    const posts = await getPosts('ru')
+    const posts = await getPosts('ru');
     return { posts, namespacesRequired: ['common'] };
   }
 
-  componentDidUpdate(prevProps) {
-    if (this.props.lng !== prevProps.lng) {
-      getPosts(this.props.lng)
-    }
-  }
+  // componentDidUpdate(prevProps) {
+  //   if (this.props.lng !== prevProps.lng) {
+  //     getPosts(this.props.lng);
+  //   }
+  // }
 
   render() {
     console.log(this.props);
