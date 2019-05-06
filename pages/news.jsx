@@ -71,14 +71,19 @@ const Post = styled.div`
   }
 `;
 
+async function getPost(slug, lang) {
+  const { WP_URL } = publicRuntimeConfig;
+  return fetch(
+    `${WP_URL}/wp-json/wp/v2/posts?slug=${slug}`,
+  ).then(res => res.json())
+   .catch(err => console.log(err));
+}
+
 class Article extends Component {
   static async getInitialProps(ctx) {
     const { slug } = ctx.query;
-    const { WP_URL } = publicRuntimeConfig;
-    const post = await fetch(
-      `${WP_URL}/wp-json/better-rest-endpoints/v1/post/${slug}`,
-    ).then(res => res.json())
-      .catch(err => console.log(err));
+    console.log(slug)
+    const post = await getPost(slug, 'ru');
     return { post };
   }
 
@@ -91,7 +96,7 @@ class Article extends Component {
     console.log(this.props);
     return (
       <Post>
-        <Container>
+        {/* <Container>
           <Row theme={{ '$grid-gutter-width': '50px' }}>
             <Col lg="2" md="2" />
             <Col lg="8" md="8" xs="12">
@@ -139,7 +144,7 @@ class Article extends Component {
               <div className="content" dangerouslySetInnerHTML={Article.renderPostContent(post.content)} />
             </Col>
           </Row>
-        </Container>
+        </Container> */}
       </Post>
     );
   }

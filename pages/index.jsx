@@ -2,13 +2,13 @@ import React from 'react';
 import styled from 'styled-components';
 import fetch from 'isomorphic-unfetch';
 import getConfig from 'next/config';
-import { i18n, withNamespaces } from '../i18n'
-
 import {
   Container,
   Row,
   Col,
 } from '@bootstrap-styled/v4';
+import { withNamespaces } from '../i18n';
+
 
 import SmallCard from '../components/cards/SmallCard';
 import MediumCard from '../components/cards/MediumCard';
@@ -30,32 +30,37 @@ const MainPage = styled.div`
 
 `;
 
+async function getPosts(lang) {
+  const { WP_URL } = publicRuntimeConfig;
+  return fetch(
+    `${WP_URL}/wp-json/better-rest-endpoints/v1/posts?content=false&acf=false&lang=${lang}`,
+  ).then(res => res.json())
+   .catch(err => console.log(err));
+}
+
 class Index extends React.Component {
   static async getInitialProps() {
-    const { WP_URL } = publicRuntimeConfig;
-    const posts = await fetch(
-      `${WP_URL}/wp-json/better-rest-endpoints/v1/posts?content=false&acf=false`,
-    ).then(res => res.json())
-      .catch(err => console.log(err));
+    const posts = await getPosts('ru')
     return { posts, namespacesRequired: ['common'] };
+  }
+
+  componentDidUpdate(prevProps) {
+    if (this.props.lng !== prevProps.lng) {
+      getPosts(this.props.lng)
+    }
   }
 
   render() {
     console.log(this.props);
-    const { posts } = this.props;
+    const { posts, t } = this.props;
     return (
       <MainPage>
         <Container>
           <Row theme={{ '$grid-gutter-width': '50px' }}>
             <Col lg="12" md="12" xs="12">
               <h1 className="text-center">
-                {this.props.t('title')}
+                {t('Stories')}
               </h1>
-              <button
-          onClick={() => i18n.changeLanguage(i18n.language === 'en' ? 'de' : 'en')}
-        >
-          Change locale
-        </button>
             </Col>
           </Row>
           <Row theme={{ '$grid-gutter-width': '50px' }}>
