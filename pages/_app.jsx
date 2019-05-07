@@ -1,7 +1,7 @@
 import App, { Container } from 'next/app';
 import React from 'react';
 import BootstrapProvider from '@bootstrap-styled/provider/lib/BootstrapProvider';
-import cookies from 'next-cookies';
+// import cookies from 'next-cookies';
 import MobileDetect from 'mobile-detect';
 import Nav from '../components/navigation';
 import Footer from '../components/footer';
@@ -15,7 +15,7 @@ class MyApp extends App {
     let pageProps = {};
 
     // добываем значение языка из пользовательских кукис
-    const { language, useragreedwithcookies } = cookies(ctx);
+    // const { language, useragreedwithcookies } = cookies(ctx);
     // const hasCookies = typeof language !== 'undefined';
     // const cookieConsent = typeof useragreedwithcookies !== 'undefined';
 

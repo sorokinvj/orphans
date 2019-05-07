@@ -12,6 +12,7 @@ const Flags = styled.div`
     img {
       width: 2.5rem;
       margin: 0 1rem;
+      cursor: pointer;
     }
 `;
 
