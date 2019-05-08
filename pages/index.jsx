@@ -9,9 +9,7 @@ import {
   Col,
 } from '@bootstrap-styled/v4';
 
-import SmallCard from '../components/cards/SmallCard';
-import MediumCard from '../components/cards/MediumCard';
-import LargeCard from '../components/cards/LargeCard';
+import NewsCard from '../components/cards/NewsCard';
 
 const { publicRuntimeConfig } = getConfig();
 
@@ -30,18 +28,11 @@ const MainPage = styled.div`
 `;
 
 class Index extends React.Component {
-  static async getInitialProps() {
-    const { WP_URL } = publicRuntimeConfig;
-    const posts = await fetch(
-      `${WP_URL}/wp-json/better-rest-endpoints/v1/posts?content=false&acf=false`,
-    ).then(res => res.json())
-      .catch(err => console.log(err));
-    return { posts };
-  }
+
 
   render() {
-    console.log(this.props);
-    const { posts } = this.props;
+    // console.log(this.props);
+    const { posts, t, lng } = this.props;
     return (
       <MainPage>
         <Container>
@@ -54,9 +45,9 @@ class Index extends React.Component {
           </Row>
           <Row theme={{ '$grid-gutter-width': '50px' }}>
             {posts.map((post, index) => {
-              if (index === 1) return <LargeCard item={post} key={post.title} />;
-              if (index === 5 || index === 6) return <MediumCard item={post} key={post.title} />;
-              return <SmallCard item={post} key={post.title} />;
+              if (index === 1) return <NewsCard item={post} key={post.title} lang={lng} size="large" />;
+              if (index === 5 || index === 6) return <NewsCard item={post} key={post.title} lang={lng} size="medium" />;
+              return <NewsCard item={post} key={post.title} lang={lng} />;
             })}
           </Row>
         </Container>
