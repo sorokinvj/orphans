@@ -7,7 +7,6 @@ import {
   Row,
   Col,
 } from '@bootstrap-styled/v4';
-import { lngFromReq } from 'next-i18next/dist/commonjs/utils';
 import { withNamespaces, Router } from '../i18n';
 
 import SmallCard from '../components/cards/SmallCard';
@@ -40,24 +39,23 @@ async function getPosts(lang) {
 
 class Index extends React.Component {
   static async getInitialProps(ctx) {
-    const { req } = ctx;
-    const lng = lngFromReq(req);
-    console.log("index server lang", lng);
-    const posts = await getPosts(lng);
+    const { req, query } = ctx;
+    console.log("index server", query);
+    const posts = await getPosts(query.lang);
     return { posts, namespacesRequired: ['common'] };
   }
 
 
-  componentDidUpdate(prevProps) {
-    const { lng } = this.props
-    if(lng !== prevProps.lng) {
-      console.log("lang changed", lng)
-      Router.push(`/`)
-    }
-  }
+  // componentDidUpdate(prevProps) {
+  //   const { lng } = this.props
+  //   if(lng !== prevProps.lng) {
+  //     console.log("lang changed", lng)
+  //     Router.push(`/`)
+  //   }
+  // }
 
   render() {
-    console.log(this.props);
+    // console.log(this.props);
     const { posts, t } = this.props;
     return (
       <MainPage>
