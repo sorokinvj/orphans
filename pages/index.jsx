@@ -46,13 +46,13 @@ class Index extends React.Component {
   }
 
 
-  // componentDidUpdate(prevProps) {
-  //   const { lng } = this.props
-  //   if(lng !== prevProps.lng) {
-  //     console.log("lang changed", lng)
-  //     Router.push(`/`)
-  //   }
-  // }
+  componentDidUpdate(prevProps) {
+    const { lng } = this.props
+    if(lng !== prevProps.lng) {
+      console.log("lang changed", lng)
+      Router.push(`/${lng}`)
+    }
+  }
 
   render() {
     // console.log(this.props);
