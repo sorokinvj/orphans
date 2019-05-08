@@ -7,7 +7,8 @@ import {
   Row,
   Col,
 } from '@bootstrap-styled/v4';
-import daysjs from 'dayjs';
+import dayjs from 'dayjs';
+import { withNamespaces, Router } from '../i18n';
 
 const { publicRuntimeConfig } = getConfig();
 
@@ -92,6 +93,14 @@ class Article extends Component {
     return { __html: content };
   }
 
+  componentDidUpdate(prevProps) {
+    const { lng, post } = this.props;
+    if (lng !== prevProps.lng) {
+      console.log('lang changed', lng);
+      Router.push(`/${lng}/news/${post[0].wpml_translations[0].slug}`);
+    }
+  }
+
   render() {
     const { post } = this.props;
     console.log(this.props);
@@ -130,7 +139,7 @@ class Article extends Component {
             <Col lg="2" md="2" />
             <Col lg="2" md="2" xs="12">
               <p className="date">
-                {daysjs(post[0].date).format('DD/MM/YYYY')}
+                {dayjs(post[0].date).format('DD/MM/YYYY')}
               </p>
             </Col>
           </Row>
@@ -146,4 +155,4 @@ class Article extends Component {
   }
 }
 
-export default Article;
+export default withNamespaces('common')(Article);
