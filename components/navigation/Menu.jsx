@@ -32,10 +32,10 @@ const Links = styled.div`
 `;
 
 
-const Menu = ({ t }) => (
+const Menu = ({ t, lng }) => (
   <Links className="menu">
     <ul>
-      <Link href="/">
+      <Link href={`/${lng}`}>
         <a>
           <li>{t('Stories')}</li>
         </a>

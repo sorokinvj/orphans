@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { Col } from '@bootstrap-styled/v4';
 import { Card, Title, Wallpaper } from './styles';
 
-const NewsCard = ({ item, size }) => {
+const NewsCard = ({ item, size, lang }) => {
   let columnsNumber;
   if (size === 'large') {
     columnsNumber = 8;
@@ -16,7 +16,7 @@ const NewsCard = ({ item, size }) => {
 
   return (
     <Col lg={columnsNumber} md="6" xs="12">
-      <Link href={`/news/${item.slug}`}>
+      <Link href={`/${lang}/news/${item.slug}`}>
         <a>
           <Card>
             <Title>

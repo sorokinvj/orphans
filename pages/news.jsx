@@ -71,20 +71,20 @@ const Post = styled.div`
   }
 `;
 
-async function getPost(slug, lang) {
+async function getPost(lang, slug) {
   const { WP_URL } = publicRuntimeConfig;
   return fetch(
-    `${WP_URL}/wp-json/better-rest-endpoints/v1/post/${slug}`,
-    // `${WP_URL}/wp-json/wp/v2/posts?slug=${slug}`,
+    // `${WP_URL}/wp-json/better-rest-endpoints/v1/post/${slug}`,
+    `${WP_URL}/wp-json/wp/v2/posts?lang=${lang}&slug=${slug}`,
   ).then(res => res.json())
-   .catch(err => console.log(err));
+    .catch(err => console.log(err));
 }
 
 class Article extends Component {
   static async getInitialProps(ctx) {
-    const { slug } = ctx.query;
-    console.log(slug)
-    const post = await getPost(slug, 'ru');
+    const { slug, lang } = ctx.query;
+    console.log(slug, lang);
+    const post = await getPost(lang, slug);
     return { post };
   }
 
@@ -102,7 +102,7 @@ class Article extends Component {
             <Col lg="2" md="2" />
             <Col lg="8" md="8" xs="12">
               <div className="hero">
-                <img src={post.media.large} alt={post.title} />
+                <img src={post[0].wallpaper} alt={post[0].title.rendered} />
               </div>
             </Col>
           </Row>
@@ -110,11 +110,11 @@ class Article extends Component {
             <Col lg="2" md="2" />
             <Col lg="8" md="8" xs="12">
               <div className="categories">
-                {post.category_names.map(cat => (
+                {/* {post[0].category_names.map(cat => (
                   <div className="cat" key={cat}>
                     {cat}
                   </div>
-                ))}
+                ))} */}
               </div>
             </Col>
           </Row>
@@ -122,7 +122,7 @@ class Article extends Component {
             <Col lg="2" md="2" />
             <Col lg="8" md="8" xs="12">
               <h1 className="title">
-                {post.title}
+                {post[0].title.rendered}
               </h1>
             </Col>
           </Row>
@@ -130,14 +130,14 @@ class Article extends Component {
             <Col lg="2" md="2" />
             <Col lg="2" md="2" xs="12">
               <p className="date">
-                {daysjs(post.date).format('DD/MM/YYYY')}
+                {daysjs(post[0].date).format('DD/MM/YYYY')}
               </p>
             </Col>
           </Row>
           <Row theme={{ '$grid-gutter-width': '50px' }}>
             <Col lg="2" md="2" />
             <Col lg="8" md="8" xs="12">
-              <div className="content" dangerouslySetInnerHTML={Article.renderPostContent(post.content)} />
+              <div className="content" dangerouslySetInnerHTML={Article.renderPostContent(post[0].content.rendered)} />
             </Col>
           </Row>
         </Container>
