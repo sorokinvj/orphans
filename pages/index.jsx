@@ -54,7 +54,7 @@ class Index extends React.Component {
 
   render() {
     // console.log(this.props);
-    const { posts, t } = this.props;
+    const { posts, t, lng } = this.props;
     return (
       <MainPage>
         <Container>
