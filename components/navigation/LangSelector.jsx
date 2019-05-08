@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { i18n } from '../../i18n';
 import ru from './ru.svg';
 import en from './en.svg';
 
@@ -11,14 +12,15 @@ const Flags = styled.div`
     img {
       width: 2.5rem;
       margin: 0 1rem;
+      cursor: pointer;
     }
 `;
 
 const LangSelector = () => (
   <Flags>
-    <img src={ru} />
+    <img src={ru} onClick={() => i18n.changeLanguage('ru')}/>
         /
-    <img src={en} />
+    <img src={en} onClick={() => i18n.changeLanguage('en')} />
   </Flags>
 );
 

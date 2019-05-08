@@ -2,6 +2,7 @@ import React from 'react';
 import Link from 'next/link';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import { withNamespaces } from '../../i18n';
 
 const Links = styled.div`
   display: flex;
@@ -31,26 +32,26 @@ const Links = styled.div`
 `;
 
 
-const Menu = ({ close }) => (
+const Menu = ({ t }) => (
   <Links className="menu">
     <ul>
       <Link href="/">
         <a>
-          <li>Истории</li>
+          <li>{t('Stories')}</li>
         </a>
       </Link>
       <Link href="/help">
         <a>
-          <li>Горячая линия</li>
+          <li>{t('Help')}</li>
         </a>
       </Link>
       <Link href="/about">
         <a>
-          <li>О проекте</li>
+          <li>{t('About')}</li>
         </a>
       </Link>
     </ul>
   </Links>
 );
 
-export default Menu;
+export default withNamespaces('common')(Menu);
