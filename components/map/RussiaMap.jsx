@@ -23,7 +23,8 @@ export default class RussiaMap extends Component {
       zoom: 3,
       bearing: 0,
       pitch: 0,
-      maxZoom: 5,
+      maxZoom: 4,
+      minZoom: 3,
     },
     popupInfo: null,
   };
