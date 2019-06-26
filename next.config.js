@@ -1,5 +1,7 @@
 // next.config.js
-module.exports = {
+const withCSS = require('@zeit/next-css')
+
+module.exports = withCSS({
   webpack(config) {
     const originalEntry = config.entry;
 
@@ -23,6 +25,7 @@ module.exports = {
         },
       },
     });
+
     config.node = {
       fs: 'empty',
     };
@@ -31,5 +34,6 @@ module.exports = {
   },
   publicRuntimeConfig: { // Will be available on both server and client
     WP_URL: 'http://178.62.114.149',
-  }
-};
+    MapboxToken: 'pk.eyJ1Ijoic29yb2tpbnZqIiwiYSI6ImNqeGRhZDF3NjBiNXozdXF3YWhjYmdnem8ifQ.z66X1naRqPvEuXj4mmIWRg',
+  },
+});

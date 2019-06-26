@@ -8,7 +8,7 @@ import Footer from '../components/footer';
 import GeneralHead from '../components/GeneralHead';
 import GlobalStyle from '../components/globals';
 import { appWithTranslation } from '../i18n';
-
+import 'mapbox-gl/dist/mapbox-gl.css';
 
 class MyApp extends App {
   static async getInitialProps({ Component, ctx }) {
@@ -51,16 +51,15 @@ class MyApp extends App {
 
 
   render() {
-    
     const {
       Component, pageProps, phone, tablet, cookieConsent,
     } = this.props;
-    
+
     const theme = {
       '$grid-gutter-width': tablet || phone ? '30px' : '50px',
     };
     // console.log("_app", this.props)
-    
+
     return (
       <Container>
         <BootstrapProvider injectGlobal reset theme={theme}>

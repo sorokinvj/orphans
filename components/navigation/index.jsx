@@ -21,8 +21,12 @@ const contentStyle = {
 
 const Navbar = styled.nav`
   height: 7rem;
-  background: #0D2C54;
+  background: transparent;
   display: flex;
+  z-index: 1;
+  position: absolute;
+  top: 0;
+  width: 100%;
 
   .container {
     display: flex;
