@@ -16,7 +16,7 @@ const Links = styled.div`
       margin: 4rem 3rem 0 auto;
     }
     li {
-      color: white;
+      color: ${props => (props.white ? 'white' : 'black')};
       font-size: 1.6rem;
       text-transform: uppercase;
       display: inline-block;
@@ -32,8 +32,8 @@ const Links = styled.div`
 `;
 
 
-const Menu = ({ t, lng }) => (
-  <Links className="menu">
+const Menu = ({ t, lng, white }) => (
+  <Links className="menu" white={white}>
     <ul>
       <Link href={`/${lng}`}>
         <a>
@@ -53,5 +53,17 @@ const Menu = ({ t, lng }) => (
     </ul>
   </Links>
 );
+
+Menu.propTypes = {
+  lng: PropTypes.string,
+  t: PropTypes.func,
+  white: PropTypes.bool,
+};
+
+Menu.defaultProps = {
+  lng: 'ru',
+  t: () => {},
+  white: false,
+};
 
 export default withNamespaces('common')(Menu);

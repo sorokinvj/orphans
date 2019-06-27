@@ -44,9 +44,10 @@ class MyApp extends App {
 
   // componentDidMount() {
   //   // выставляем куки, если их не было
-  //   if (!this.props.hasCookies && typeof this.props.language !== 'undefined') {
-  //     document.cookie = `language=${this.props.lng};Expires=Wed, 22 Oct 2025 07:28:00 GMT`;
-  //   }
+  //   // if (!this.props.hasCookies && typeof this.props.language !== 'undefined') {
+  //   //   document.cookie = `language=${this.props.lng};Expires=Wed, 22 Oct 2025 07:28:00 GMT`;
+  //   // }
+  //   console.log("app", Router.router.route);
   // }
 
 
@@ -58,14 +59,16 @@ class MyApp extends App {
     const theme = {
       '$grid-gutter-width': tablet || phone ? '30px' : '50px',
     };
-    // console.log("_app", this.props)
+    // console.log('_app', Router);
 
     return (
       <Container>
         <BootstrapProvider injectGlobal reset theme={theme}>
           <GlobalStyle />
           <GeneralHead />
-          <Nav cookieConsent={cookieConsent} />
+          <Nav
+            cookieConsent={cookieConsent}
+          />
           <Component {...pageProps} phone={phone} tablet={tablet} />
           <Footer />
         </BootstrapProvider>

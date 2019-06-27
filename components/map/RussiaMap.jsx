@@ -19,11 +19,11 @@ export default class RussiaMap extends Component {
   state = {
     viewport: {
       longitude: 70,
-      latitude: 60,
+      latitude: 63,
       zoom: 3,
       bearing: 0,
       pitch: 0,
-      maxZoom: 4,
+      maxZoom: 3,
       minZoom: 3,
     },
     popupInfo: null,
@@ -69,7 +69,7 @@ export default class RussiaMap extends Component {
           width="100%"
           height="100%"
           mapboxApiAccessToken={token}
-          mapStyle="mapbox://styles/sorokinvj/cjxdlp8dp05co1cs9w87w15s1"
+          mapStyle="mapbox://styles/sorokinvj/cjxeor38t0v111cmm36vbbruc"
           onViewportChange={this.onViewportChange}
         >
           {CITIES.map(this.renderCityMarker)}
