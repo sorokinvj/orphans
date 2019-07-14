@@ -33,7 +33,7 @@ module.exports = withCSS({
     return config;
   },
   publicRuntimeConfig: { // Will be available on both server and client
-    WP_URL: 'http://178.62.114.149',
+    WP_URL: 'https://orphansmap.com',
     MapboxToken: 'pk.eyJ1Ijoic29yb2tpbnZqIiwiYSI6ImNqeGRhZDF3NjBiNXozdXF3YWhjYmdnem8ifQ.z66X1naRqPvEuXj4mmIWRg',
   },
 });
