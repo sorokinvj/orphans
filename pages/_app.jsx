@@ -8,7 +8,7 @@ import Footer from '../components/footer';
 import GeneralHead from '../components/GeneralHead';
 import GlobalStyle from '../components/globals';
 import { appWithTranslation } from '../i18n';
-
+import 'mapbox-gl/dist/mapbox-gl.css';
 
 class MyApp extends App {
   static async getInitialProps({ Component, ctx }) {
@@ -44,29 +44,31 @@ class MyApp extends App {
 
   // componentDidMount() {
   //   // выставляем куки, если их не было
-  //   if (!this.props.hasCookies && typeof this.props.language !== 'undefined') {
-  //     document.cookie = `language=${this.props.lng};Expires=Wed, 22 Oct 2025 07:28:00 GMT`;
-  //   }
+  //   // if (!this.props.hasCookies && typeof this.props.language !== 'undefined') {
+  //   //   document.cookie = `language=${this.props.lng};Expires=Wed, 22 Oct 2025 07:28:00 GMT`;
+  //   // }
+  //   console.log("app", Router.router.route);
   // }
 
 
   render() {
-    
     const {
       Component, pageProps, phone, tablet, cookieConsent,
     } = this.props;
-    
+
     const theme = {
       '$grid-gutter-width': tablet || phone ? '30px' : '50px',
     };
-    // console.log("_app", this.props)
-    
+    // console.log('_app', Router);
+
     return (
       <Container>
         <BootstrapProvider injectGlobal reset theme={theme}>
           <GlobalStyle />
           <GeneralHead />
-          <Nav cookieConsent={cookieConsent} />
+          <Nav
+            cookieConsent={cookieConsent}
+          />
           <Component {...pageProps} phone={phone} tablet={tablet} />
           <Footer />
         </BootstrapProvider>

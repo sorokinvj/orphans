@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import { withRouter } from 'next/router';
 
 import { Container } from '@bootstrap-styled/v4';
 import Popup from 'reactjs-popup';
@@ -21,8 +22,12 @@ const contentStyle = {
 
 const Navbar = styled.nav`
   height: 7rem;
-  background: #0D2C54;
+  background: transparent;
   display: flex;
+  z-index: 1;
+  position: absolute;
+  top: 0;
+  width: 100%;
 
   .container {
     display: flex;
@@ -40,15 +45,15 @@ const Navbar = styled.nav`
   }
 `;
 
-const Nav = () => (
+const Nav = ({ router }) => (
   <Navbar>
     <Container>
-      <Logo />
-      <Menu />
-      <LangSelector />
+      <Logo white={router.route === '/'} />
+      <Menu white={router.route === '/'} />
+      <LangSelector white={router.route === '/'} />
     </Container>
 
-    {/* burger button and mobile menu*/}
+    {/* burger button and mobile menu */}
     <Popup
       modal
       closeOnDocumentClick
@@ -63,7 +68,15 @@ const Nav = () => (
 );
 
 Nav.propTypes = {
-
+  router: PropTypes.shape({
+    route: PropTypes.string,
+  }),
 };
 
-export default Nav;
+Nav.defaultProps = {
+  router: {
+    route: '/',
+  },
+};
+
+export default withRouter(Nav);

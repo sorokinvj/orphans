@@ -1,14 +1,36 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import logo from './logo.svg';
+import Link from 'next/link';
+import logoWhite from './logo.svg';
+import logoBlack from './logoBlack.svg';
+import { withNamespaces } from '../../i18n';
 
 const LogoWrap = styled.div`
   display: flex;
 `;
-const Logo = () => (
+
+const Logo = ({ white, lng }) => (
   <LogoWrap>
-      <img src={logo} alt="project logo" />
+    <Link href={`/${lng}`}>
+      <a>
+        {white
+          ? <img src={logoWhite} alt="project logo" />
+          : <img src={logoBlack} alt="project logo" />}
+      </a>
+    </Link>
+
   </LogoWrap>
 );
 
-export default Logo;
+Logo.propTypes = {
+  white: PropTypes.bool,
+  lng: PropTypes.string,
+};
+
+Logo.defaultProps = {
+  white: false,
+  lng: 'ru',
+};
+
+export default withNamespaces('common')(Logo);

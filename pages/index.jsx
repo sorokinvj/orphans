@@ -8,13 +8,12 @@ import {
   Col,
 } from '@bootstrap-styled/v4';
 import { withNamespaces, Router } from '../i18n';
-
 import NewsCard from '../components/cards/NewsCard';
+import RussiaMap from '../components/map/RussiaMap';
 
 const { publicRuntimeConfig } = getConfig();
 
 const MainPage = styled.div`
-  padding: 8rem 0;
 
   h1 {
     font-family: 'PT Sans';
@@ -37,26 +36,28 @@ async function getPosts(lang) {
 
 class Index extends React.Component {
   static async getInitialProps(ctx) {
-    const { req, query } = ctx;
-    console.log("index server", query);
+    const { query } = ctx;
+    // console.log("index server", query);
     const posts = await getPosts(query.lang);
     return { posts, namespacesRequired: ['common'] };
   }
 
 
   componentDidUpdate(prevProps) {
-    const { lng } = this.props
-    if(lng !== prevProps.lng) {
-      console.log("lang changed", lng)
-      Router.push(`/${lng}`)
+    const { lng } = this.props;
+    if (lng !== prevProps.lng) {
+      // console.log("lang changed", lng)
+      Router.push(`/${lng}`);
     }
   }
 
   render() {
     // console.log(this.props);
     const { posts, t, lng } = this.props;
+    const { MapboxToken } = publicRuntimeConfig;
     return (
       <MainPage>
+        <RussiaMap token={MapboxToken} />
         <Container>
           <Row theme={{ '$grid-gutter-width': '50px' }}>
             <Col lg="12" md="12" xs="12">
