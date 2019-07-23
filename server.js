@@ -7,13 +7,6 @@ const app = next({ dev });
 const handle = app.getRequestHandler();
 const requestLanguage = require('express-request-language');
 
-// https
-const rootCas = require('ssl-root-cas/latest').create();
-
-rootCas
-  .addFile('/home/sorokinvj/orphansmap.com.chained.crt');
-require('https').globalAgent.options.ca = rootCas;
-
 const nextI18NextMiddleware = require('next-i18next/middleware');
 const nextI18next = require('./i18n');
 
