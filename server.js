@@ -9,8 +9,9 @@ const requestLanguage = require('express-request-language');
 
 // https
 const rootCas = require('ssl-root-cas/latest').create();
+
 rootCas
-  .addFile('/home/sorokinvj/orphansmap.com.crt')
+  .addFile('/home/sorokinvj/orphansmap.com.chained.crt');
 require('https').globalAgent.options.ca = rootCas;
 
 const nextI18NextMiddleware = require('next-i18next/middleware');
