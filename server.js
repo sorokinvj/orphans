@@ -6,7 +6,11 @@ const dev = process.env.NODE_ENV !== 'production';
 const app = next({ dev });
 const handle = app.getRequestHandler();
 const requestLanguage = require('express-request-language');
+
+// https
 const rootCas = require('ssl-root-cas/latest').create();
+rootCas
+  .addFile('/home/sorokinvj/orphansmap.com.crt')
 require('https').globalAgent.options.ca = rootCas;
 
 const nextI18NextMiddleware = require('next-i18next/middleware');
