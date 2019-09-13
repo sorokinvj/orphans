@@ -2,9 +2,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Link from 'next/link';
 import { Col } from '@bootstrap-styled/v4';
+import { RichText } from 'prismic-reactjs';
+import { linkResolver } from '../../prismic-configuration';
 import { Card, Title, Wallpaper } from './styles';
 
-const NewsCard = ({ item, size, lang }) => {
+
+const NewsCard = ({
+  item, size, lang, phone,
+}) => {
   let columnsNumber;
   if (size === 'large') {
     columnsNumber = 8;
@@ -14,15 +19,15 @@ const NewsCard = ({ item, size, lang }) => {
     columnsNumber = 4;
   }
 
+  // console.log("newscard", item)
+
   return (
     <Col lg={columnsNumber} md="6" xs="12">
-      <Link href={`/${lang}/news/${item.slug}`}>
+      <Link href={`/${lang}/article/${item.uid}`}>
         <a>
           <Card>
-            <Title>
-              {item.title}
-            </Title>
-            <Wallpaper src={size ? item.media.medium_large : item.media.medium} />
+            {RichText.render(item.data.title, linkResolver)}
+            <Wallpaper src={phone ? item.data.wallpaper.mob.url : item.data.wallpaper.url} />
           </Card>
         </a>
       </Link>

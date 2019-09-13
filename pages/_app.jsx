@@ -59,16 +59,14 @@ class MyApp extends App {
     const theme = {
       '$grid-gutter-width': tablet || phone ? '30px' : '50px',
     };
-    // console.log('_app', Router);
+    // console.log('_app', this.props);
 
     return (
       <Container>
         <BootstrapProvider injectGlobal reset theme={theme}>
           <GlobalStyle />
           <GeneralHead />
-          <Nav
-            cookieConsent={cookieConsent}
-          />
+          <Nav cookieConsent={cookieConsent} />
           <Component {...pageProps} phone={phone} tablet={tablet} />
           <Footer />
         </BootstrapProvider>

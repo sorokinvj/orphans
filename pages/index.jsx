@@ -1,15 +1,16 @@
 import React from 'react';
 import styled from 'styled-components';
-import fetch from 'isomorphic-unfetch';
 import getConfig from 'next/config';
 import {
   Container,
   Row,
   Col,
 } from '@bootstrap-styled/v4';
-import { withNamespaces, Router } from '../i18n';
+import Prismic from 'prismic-javascript';
+import { i18n, withNamespaces, Router } from '../i18n';
 import NewsCard from '../components/cards/NewsCard';
 import RussiaMap from '../components/map/RussiaMap';
+import { client } from '../prismic-configuration';
 
 const { publicRuntimeConfig } = getConfig();
 
@@ -26,39 +27,28 @@ const MainPage = styled.div`
 
 `;
 
-async function getPosts(lang) {
-  const { WP_URL } = publicRuntimeConfig;
-  return fetch(
-    `${WP_URL}/wp-json/better-rest-endpoints/v1/posts?content=false&acf=false&lang=${lang}`,
-  ).then(res => res.json())
-    .catch(err => console.log(err));
-}
-
 class Index extends React.Component {
+
   static async getInitialProps(ctx) {
-    const { query } = ctx;
-    // console.log("index server", query);
-    const posts = await getPosts(query.lang);
-    return { posts, namespacesRequired: ['common'] };
-  }
-
-
-  componentDidUpdate(prevProps) {
-    const { lng } = this.props;
-    if (lng !== prevProps.lng) {
-      // console.log("lang changed", lng)
-      Router.push(`/${lng}`);
-    }
+    const { query: { lang } } = ctx;
+    i18n.changeLanguage(lang);
+    const response = await client.query(
+      Prismic.Predicates.at('document.type', 'post'), { lang },
+    );
+    return { response };
   }
 
   render() {
-    // console.log(this.props);
-    const { posts, t, lng } = this.props;
+    // console.log("index", this.props);
+    const {
+      posts, t, lng, response, phone,
+    } = this.props;
     const { MapboxToken } = publicRuntimeConfig;
     return (
       <MainPage>
         <RussiaMap token={MapboxToken} />
         <Container>
+          <p><b>TODO: query Prismic with changing Language</b></p>
           <Row theme={{ '$grid-gutter-width': '50px' }}>
             <Col lg="12" md="12" xs="12">
               <h1 className="text-center">
@@ -67,10 +57,37 @@ class Index extends React.Component {
             </Col>
           </Row>
           <Row theme={{ '$grid-gutter-width': '50px' }}>
-            {posts.map((post, index) => {
-              if (index === 1) return <NewsCard item={post} key={post.title} lang={lng} size="large" />;
-              if (index === 5 || index === 6) return <NewsCard item={post} key={post.title} lang={lng} size="medium" />;
-              return <NewsCard item={post} key={post.title} lang={lng} />;
+            {response.results.map((post, index) => {
+              if (index === 1) {
+                return (
+                  <NewsCard
+                    item={post}
+                    key={post.uid}
+                    lang={lng}
+                    size="large"
+                    phone={phone}
+                  />
+                );
+              }
+              if (index === 5 || index === 6) {
+                return (
+                  <NewsCard
+                    item={post}
+                    key={post.uid}
+                    lang={lng}
+                    phone={phone}
+                    size="medium"
+                  />
+                );
+              }
+              return (
+                <NewsCard
+                  item={post}
+                  key={post.uid}
+                  lang={lng}
+                  phone={phone}
+                />
+              );
             })}
           </Row>
         </Container>

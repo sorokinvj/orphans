@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-import fetch from 'isomorphic-unfetch';
-import getConfig from 'next/config';
 import styled from 'styled-components';
 import {
   Container,
@@ -8,9 +6,10 @@ import {
   Col,
 } from '@bootstrap-styled/v4';
 import dayjs from 'dayjs';
+import Prismic from 'prismic-javascript';
+import { RichText } from 'prismic-reactjs';
 import { withNamespaces, Router } from '../i18n';
-
-const { publicRuntimeConfig } = getConfig();
+import { client, linkResolver } from '../prismic-configuration';
 
 const Post = styled.div`
   padding: 10rem 0;
@@ -72,38 +71,30 @@ const Post = styled.div`
   }
 `;
 
-async function getPost(lang, slug) {
-  const { WP_URL } = publicRuntimeConfig;
-  return fetch(
-    // `${WP_URL}/wp-json/better-rest-endpoints/v1/post/${slug}`,
-    `${WP_URL}/wp-json/wp/v2/posts?lang=${lang}&slug=${slug}`,
-  ).then(res => res.json())
-    .catch(err => console.log(err));
-}
 
 class Article extends Component {
   static async getInitialProps(ctx) {
-    const { slug, lang } = ctx.query;
-    console.log(slug, lang);
-    const post = await getPost(lang, slug);
-    return { post };
-  }
-
-  static renderPostContent(content) {
-    return { __html: content };
+    const { uid, lang } = ctx.query;
+    console.log('article static', lang, decodeURIComponent(uid));
+    const response = await client.query(
+      Prismic.Predicates.at('my.post.uid', decodeURIComponent(uid)), { lang },
+    );
+    return { response, namespacesRequired: ['common'] };
   }
 
   componentDidUpdate(prevProps) {
-    const { lng, post } = this.props;
+    const { lng, response } = this.props;
+    const { alternate_languages: [{ lang, uid }] } = response.results[0];
     if (lng !== prevProps.lng) {
       console.log('lang changed', lng);
-      Router.push(`/${lng}/news/${post[0].wpml_translations[0].slug}`);
+      Router.push(`/${lang}/article/${uid}`);
     }
   }
 
   render() {
-    const { post } = this.props;
-    console.log(this.props);
+    const { post, response, phone } = this.props;
+    const { data, first_publication_date } = response.results[0];
+    console.log('article', this.props);
     return (
       <Post>
         <Container>
@@ -111,42 +102,40 @@ class Article extends Component {
             <Col lg="2" md="2" />
             <Col lg="8" md="8" xs="12">
               <div className="hero">
-                <img src={post[0].wallpaper} alt={post[0].title.rendered} />
+                <img src={phone ? data.wallpaper.mob.url : data.wallpaper.url} alt={data.title[0].text} />
               </div>
             </Col>
           </Row>
-          <Row theme={{ '$grid-gutter-width': '50px' }}>
+          {/* <Row theme={{ '$grid-gutter-width': '50px' }}>
             <Col lg="2" md="2" />
             <Col lg="8" md="8" xs="12">
               <div className="categories">
-                {/* {post[0].category_names.map(cat => (
+                {post[0].category_names.map(cat => (
                   <div className="cat" key={cat}>
                     {cat}
                   </div>
-                ))} */}
+                ))}
               </div>
             </Col>
-          </Row>
+          </Row> */}
           <Row theme={{ '$grid-gutter-width': '50px' }}>
             <Col lg="2" md="2" />
             <Col lg="8" md="8" xs="12">
-              <h1 className="title">
-                {post[0].title.rendered}
-              </h1>
+              {RichText.render(data.title, linkResolver)}
             </Col>
           </Row>
           <Row theme={{ '$grid-gutter-width': '50px' }}>
             <Col lg="2" md="2" />
             <Col lg="2" md="2" xs="12">
               <p className="date">
-                {dayjs(post[0].date).format('DD/MM/YYYY')}
+                {dayjs(first_publication_date).format('DD/MM/YYYY')}
               </p>
             </Col>
           </Row>
           <Row theme={{ '$grid-gutter-width': '50px' }}>
             <Col lg="2" md="2" />
             <Col lg="8" md="8" xs="12">
-              <div className="content" dangerouslySetInnerHTML={Article.renderPostContent(post[0].content.rendered)} />
+              {RichText.render(data.body, linkResolver)}
             </Col>
           </Row>
         </Container>
