@@ -1,8 +1,8 @@
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
-import React from 'react';
+import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import { i18n, withNamespaces } from '../../i18n';
+import SetLanguageContext from '../context/SetLanguageContext';
 import ru from './ru.svg';
 import en from './en.svg';
 
@@ -18,31 +18,30 @@ const Flags = styled.div`
     }
 `;
 
+const LangSelector = ({ white }) => {
+  const dispatch = useContext(SetLanguageContext);
+  // const language = useContext(LanguageContext);
+  // console.log('language from state', language)
 
-const changeLang = (currentLanguage, switchlanguage) => {
-  if (currentLanguage !== switchlanguage) {
-    i18n.changeLanguage(switchlanguage);
+  function switchLang(data) {
+    // console.log('...Switching Lang to - ', data.value);
+    dispatch({ type: 'switchLang', payload: data.value });
   }
-};
-
-
-const LangSelector = ({ white, lng }) => (
-  <Flags white={white}>
-    <img src={ru} alt="change language to Russian" onClick={() => changeLang(lng, 'ru')} />
+  return (
+    <Flags white={white}>
+      <img src={ru} alt="change language to Russian" onClick={() => switchLang({ value: 'ru' })} />
     /
-    <img src={en} alt="change language to English" onClick={() => changeLang(lng, 'en-gb')} />
-  </Flags>
-
-);
+      <img src={en} alt="change language to English" onClick={() => switchLang({ value: 'en-gb' })} />
+    </Flags>
+  );
+};
 
 LangSelector.propTypes = {
   white: PropTypes.bool,
-  lng: PropTypes.string,
 };
 
 LangSelector.defaultProps = {
   white: false,
-  lng: 'ru',
 };
 
-export default withNamespaces('common')(LangSelector);
+export default LangSelector;

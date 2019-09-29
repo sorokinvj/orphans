@@ -2,7 +2,7 @@ import React from 'react';
 import Link from 'next/link';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import { withNamespaces } from '../../i18n';
+import { Trans } from '@lingui/macro';
 
 const Links = styled.div`
   display: flex;
@@ -32,22 +32,22 @@ const Links = styled.div`
 `;
 
 
-const Menu = ({ t, lng, white }) => (
+const Menu = ({ lng, white }) => (
   <Links className="menu" white={white}>
     <ul>
       <Link href={`/${lng}`}>
         <a>
-          <li>{t('Stories')}</li>
+          <li><Trans>Истории</Trans></li>
         </a>
       </Link>
       <Link href="/help">
         <a>
-          <li>{t('Help')}</li>
+          <li><Trans>Помощь</Trans></li>
         </a>
       </Link>
       <Link href="/about">
         <a>
-          <li>{t('About')}</li>
+          <li><Trans>О проекте</Trans></li>
         </a>
       </Link>
     </ul>
@@ -56,7 +56,6 @@ const Menu = ({ t, lng, white }) => (
 
 Menu.propTypes = {
   lng: PropTypes.string,
-  t: PropTypes.func,
   white: PropTypes.bool,
 };
 
@@ -66,4 +65,4 @@ Menu.defaultProps = {
   white: false,
 };
 
-export default withNamespaces('common')(Menu);
+export default Menu;

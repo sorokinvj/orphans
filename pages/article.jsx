@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
+import { withRouter } from 'next/router';
 import {
   Container,
   Row,
@@ -8,7 +9,7 @@ import {
 import dayjs from 'dayjs';
 import Prismic from 'prismic-javascript';
 import { RichText } from 'prismic-reactjs';
-import { withNamespaces, Router } from '../i18n';
+import LanguageContext from '../components/context/LanguageContext';
 import { client, linkResolver } from '../prismic-configuration';
 
 const Post = styled.div`
@@ -73,75 +74,91 @@ const Post = styled.div`
 
 
 class Article extends Component {
-  static async getInitialProps(ctx) {
-    const { uid, lang } = ctx.query;
-    console.log('article static', lang, decodeURIComponent(uid));
-    const response = await client.query(
-      Prismic.Predicates.at('my.post.uid', decodeURIComponent(uid)), { lang },
-    );
-    return { response, namespacesRequired: ['common'] };
+  static contextType = LanguageContext
+
+  state = {
+    content: {
+      results: [],
+    },
+    currentLang: null,
   }
 
-  componentDidUpdate(prevProps) {
-    const { lng, response } = this.props;
-    const { alternate_languages: [{ lang, uid }] } = response.results[0];
-    if (lng !== prevProps.lng) {
-      console.log('lang changed', lng);
-      Router.push(`/${lang}/article/${uid}`);
+  async componentDidMount() {
+    const language = this.context;
+    this.setState({
+      currentLang: language,
+    });
+    const { router } = this.props;
+    const { uid } = router.query;
+    const response = await client.query(
+      Prismic.Predicates.at('my.post.uid', uid), { lang: language },
+    );
+    this.setState({
+      content: {
+        results: response.results,
+      },
+    });
+    console.log('content', this.state.content);
+  }
+
+  async componentDidUpdate() {
+    const { router } = this.props;
+    const { content, currentLang } = this.state;
+    const language = this.context;
+    if (content.results.length > 0) {
+      const { alternate_languages } = content.results[0];
+      if (alternate_languages[0]) {
+        const { lang, uid } = alternate_languages[0];
+        if (currentLang !== language) {
+          router.push(`/${lang}/article/${uid}`);
+        }
+      }
     }
   }
 
   render() {
-    const { post, response, phone } = this.props;
-    const { data, first_publication_date } = response.results[0];
-    console.log('article', this.props);
-    return (
-      <Post>
-        <Container>
-          <Row theme={{ '$grid-gutter-width': '50px' }}>
-            <Col lg="2" md="2" />
-            <Col lg="8" md="8" xs="12">
-              <div className="hero">
-                <img src={phone ? data.wallpaper.mob.url : data.wallpaper.url} alt={data.title[0].text} />
-              </div>
-            </Col>
-          </Row>
-          {/* <Row theme={{ '$grid-gutter-width': '50px' }}>
-            <Col lg="2" md="2" />
-            <Col lg="8" md="8" xs="12">
-              <div className="categories">
-                {post[0].category_names.map(cat => (
-                  <div className="cat" key={cat}>
-                    {cat}
-                  </div>
-                ))}
-              </div>
-            </Col>
-          </Row> */}
-          <Row theme={{ '$grid-gutter-width': '50px' }}>
-            <Col lg="2" md="2" />
-            <Col lg="8" md="8" xs="12">
-              {RichText.render(data.title, linkResolver)}
-            </Col>
-          </Row>
-          <Row theme={{ '$grid-gutter-width': '50px' }}>
-            <Col lg="2" md="2" />
-            <Col lg="2" md="2" xs="12">
-              <p className="date">
-                {dayjs(first_publication_date).format('DD/MM/YYYY')}
-              </p>
-            </Col>
-          </Row>
-          <Row theme={{ '$grid-gutter-width': '50px' }}>
-            <Col lg="2" md="2" />
-            <Col lg="8" md="8" xs="12">
-              {RichText.render(data.body, linkResolver)}
-            </Col>
-          </Row>
-        </Container>
-      </Post>
-    );
+    const { phone } = this.props;
+    const { content } = this.state;
+    // console.log('article', this.props);
+    if (content.results.length > 0) {
+      const { data, first_publication_date } = content.results[0];
+      return (
+        <Post>
+          <Container>
+            <Row theme={{ '$grid-gutter-width': '50px' }}>
+              <Col lg="2" md="2" />
+              <Col lg="8" md="8" xs="12">
+                <div className="hero">
+                  <img src={phone ? data.wallpaper.mob.url : data.wallpaper.url} alt={data.title[0].text} />
+                </div>
+              </Col>
+            </Row>
+            <Row theme={{ '$grid-gutter-width': '50px' }}>
+              <Col lg="2" md="2" />
+              <Col lg="8" md="8" xs="12">
+                {RichText.render(data.title, linkResolver)}
+              </Col>
+            </Row>
+            <Row theme={{ '$grid-gutter-width': '50px' }}>
+              <Col lg="2" md="2" />
+              <Col lg="2" md="2" xs="12">
+                <p className="date">
+                  {dayjs(first_publication_date).format('DD/MM/YYYY')}
+                </p>
+              </Col>
+            </Row>
+            <Row theme={{ '$grid-gutter-width': '50px' }}>
+              <Col lg="2" md="2" />
+              <Col lg="8" md="8" xs="12">
+                {RichText.render(data.body, linkResolver)}
+              </Col>
+            </Row>
+          </Container>
+        </Post>
+      );
+    }
+    return null;
   }
 }
 
-export default withNamespaces('common')(Article);
+export default withRouter(Article);
