@@ -157,7 +157,7 @@ class Article extends Component {
         </Post>
       );
     }
-    return null
+    return null;
   }
 }
 

@@ -1,7 +1,7 @@
 {
     "presets": ["next/babel"],
     "plugins": [
-        ["styled-components", 
+        ["babel-plugin-styled-components", 
         { 
             "ssr": true,
             "displayName": true,
@@ -12,9 +12,27 @@
         "transform-class-properties"
     ],
     "env": {
-        "test": {
+        "development": {
           "plugins": [
+            ["babel-plugin-styled-components", 
+              { 
+                  "ssr": true,
+                  "displayName": true
+                  }
+              ],
             "dynamic-import-node"
+          ],
+          "presets": ["next/babel"]
+        },
+        "production": {
+          "presets": ["next/babel"],
+          "plugins": [
+            ["babel-plugin-styled-components", 
+              { 
+                  "ssr": true,
+                  "displayName": true
+                  }
+              ]
           ]
         }
     }

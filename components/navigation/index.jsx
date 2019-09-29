@@ -58,7 +58,7 @@ const Nav = ({ router }) => (
       modal
       closeOnDocumentClick
       contentStyle={contentStyle}
-      trigger={open => <Burger open={open} />}
+      trigger={open => <div><Burger open={open} /></div>}
     >
       {close => <Menu close={close} />}
     </Popup>

@@ -15,7 +15,7 @@ function langReducer(state, action) {
 const AppWithI18n = ({ children, initLanguage }) => {
   const [state, dispatch] = useReducer(langReducer, { language: initLanguage });
   const [catalogs, setCatalogs] = useState(null);
-    // console.log("appi18n", state.language);
+  // console.log("appi18n", state.language);
 
   const loadCatalog = async (language) => {
     const catalog = await import(
@@ -27,7 +27,7 @@ const AppWithI18n = ({ children, initLanguage }) => {
       [state.language]: catalog,
     });
   };
-  
+
   // второй аргумент у функции - пустой массив,
   // это нужно, что useEffect выполнилась только один раз
   useEffect(() => {

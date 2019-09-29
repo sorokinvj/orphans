@@ -73,14 +73,14 @@ class Index extends React.Component {
       <MainPage>
         <RussiaMap token={MapboxToken} />
         <Container>
-          <Row theme={{ '$grid-gutter-width': '50px' }}>
+          <Row>
             <Col lg="12" md="12" xs="12">
               <h1 className="text-center">
                 <Trans>Истории</Trans>
               </h1>
             </Col>
           </Row>
-          <Row theme={{ '$grid-gutter-width': '50px' }}>
+          <Row>
             {content.results.map((post, index) => {
               if (index === 1) {
                 return (

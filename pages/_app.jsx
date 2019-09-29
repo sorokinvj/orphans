@@ -54,7 +54,7 @@ class MyApp extends App {
 
   render() {
     const {
-      Component, pageProps, phone, tablet, cookieConsent, router
+      Component, pageProps, phone, tablet, cookieConsent, router,
     } = this.props;
 
     const theme = {
