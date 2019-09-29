@@ -1,0 +1,26 @@
+{
+  "Истории": {
+    "origin": [
+      [
+        "components/navigation/Menu.jsx",
+        40
+      ]
+    ]
+  },
+  "Помощь": {
+    "origin": [
+      [
+        "components/navigation/Menu.jsx",
+        45
+      ]
+    ]
+  },
+  "О проекте": {
+    "origin": [
+      [
+        "components/navigation/Menu.jsx",
+        50
+      ]
+    ]
+  }
+}

@@ -1,5 +1,6 @@
-import App, { Container } from 'next/app';
+import App from 'next/app';
 import React from 'react';
+import { withRouter } from 'next/router';
 import BootstrapProvider from '@bootstrap-styled/provider/lib/BootstrapProvider';
 // import cookies from 'next-cookies';
 import MobileDetect from 'mobile-detect';
@@ -7,7 +8,7 @@ import Nav from '../components/navigation';
 import Footer from '../components/footer';
 import GeneralHead from '../components/GeneralHead';
 import GlobalStyle from '../components/globals';
-import { appWithTranslation } from '../i18n';
+import AppWithI18n from '../components/AppWithI18n';
 import 'mapbox-gl/dist/mapbox-gl.css';
 
 class MyApp extends App {
@@ -53,7 +54,7 @@ class MyApp extends App {
 
   render() {
     const {
-      Component, pageProps, phone, tablet, cookieConsent,
+      Component, pageProps, phone, tablet, cookieConsent, router,
     } = this.props;
 
     const theme = {
@@ -62,7 +63,7 @@ class MyApp extends App {
     // console.log('_app', this.props);
 
     return (
-      <Container>
+      <AppWithI18n initLanguage={router.query.lang}>
         <BootstrapProvider injectGlobal reset theme={theme}>
           <GlobalStyle />
           <GeneralHead />
@@ -70,9 +71,9 @@ class MyApp extends App {
           <Component {...pageProps} phone={phone} tablet={tablet} />
           <Footer />
         </BootstrapProvider>
-      </Container>
+      </AppWithI18n>
     );
   }
 }
 
-export default appWithTranslation(MyApp);
+export default withRouter(MyApp);

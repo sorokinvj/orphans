@@ -7,24 +7,17 @@ const app = next({ dev });
 const handle = app.getRequestHandler();
 const requestLanguage = require('express-request-language');
 
-const nextI18NextMiddleware = require('next-i18next/middleware');
-const nextI18next = require('./i18n');
-
-
 app.prepare().then(() => {
   const server = express();
 
-  // server.use(requestLanguage({
-  //   languages: ['en-gb', 'ru'],
-  //   // cookie: {
-  //   //   name: 'language',
-  //   //   options: { maxAge: 24*3600*1000 },
-  //   //   url: '/languages/{language}'
-  //   // }
-  // }));
-
-
-  server.use(nextI18NextMiddleware(nextI18next));
+  server.use(requestLanguage({
+    languages: ['en-gb', 'ru'],
+    // cookie: {
+    //   name: 'language',
+    //   options: { maxAge: 24*3600*1000 },
+    //   url: '/languages/{language}'
+    // }
+  }));
 
   server.get('/:lang', (req, res) => app.render(req, res, '/',
     { lang: req.params.lang }));
@@ -35,10 +28,10 @@ app.prepare().then(() => {
       uid: req.params.uid,
     }));
 
-  // server.get('/', (req, res) => {
-  //   console.log('server.js lang in req', req.language);
-  //   res.redirect(`/${req.language}`);
-  // });
+  server.get('/', (req, res) => {
+    console.log('server.js lang in req', req.language);
+    res.redirect(`/${req.language}`);
+  });
 
   server.get('*', (req, res) => handle(req, res));
 

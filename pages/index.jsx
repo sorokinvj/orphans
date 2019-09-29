@@ -1,13 +1,15 @@
 import React from 'react';
 import styled from 'styled-components';
 import getConfig from 'next/config';
+import { withRouter } from 'next/router';
 import {
   Container,
   Row,
   Col,
 } from '@bootstrap-styled/v4';
 import Prismic from 'prismic-javascript';
-import { i18n, withNamespaces, Router } from '../i18n';
+import { Trans } from '@lingui/macro';
+import LanguageContext from '../components/context/LanguageContext';
 import NewsCard from '../components/cards/NewsCard';
 import RussiaMap from '../components/map/RussiaMap';
 import { client } from '../prismic-configuration';
@@ -28,44 +30,66 @@ const MainPage = styled.div`
 `;
 
 class Index extends React.Component {
+  static contextType = LanguageContext
 
-  static async getInitialProps(ctx) {
-    const { query: { lang } } = ctx;
-    i18n.changeLanguage(lang);
+  state = {
+    content: {
+      results: [],
+    },
+    currentLang: null,
+  }
+
+  async componentDidMount() {
+    const language = this.context;
+    this.setState({
+      currentLang: language,
+    });
     const response = await client.query(
-      Prismic.Predicates.at('document.type', 'post'), { lang },
+      Prismic.Predicates.at('document.type', 'post'), { lang: language },
     );
-    return { response };
+    this.setState({
+      content: {
+        results: response.results,
+      },
+    });
+  }
+
+  async componentDidUpdate() {
+    const { currentLang } = this.state;
+    const { router } = this.props;
+    const language = this.context;
+    if (language !== currentLang) {
+      router.push(`/${language}`);
+    }
   }
 
   render() {
-    // console.log("index", this.props);
-    const {
-      posts, t, lng, response, phone,
-    } = this.props;
     const { MapboxToken } = publicRuntimeConfig;
+    const { phone, tablet } = this.props;
+    const { content } = this.state;
+    const { router } = this.props;
+    const languageFromURL = router.query.lang;
     return (
       <MainPage>
         <RussiaMap token={MapboxToken} />
         <Container>
-          <p><b>TODO: query Prismic with changing Language</b></p>
-          <Row theme={{ '$grid-gutter-width': '50px' }}>
+          <Row>
             <Col lg="12" md="12" xs="12">
               <h1 className="text-center">
-                {t('Stories')}
+                <Trans>Истории</Trans>
               </h1>
             </Col>
           </Row>
-          <Row theme={{ '$grid-gutter-width': '50px' }}>
-            {response.results.map((post, index) => {
+          <Row>
+            {content.results.map((post, index) => {
               if (index === 1) {
                 return (
                   <NewsCard
                     item={post}
                     key={post.uid}
-                    lang={lng}
                     size="large"
                     phone={phone}
+                    lang={languageFromURL}
                   />
                 );
               }
@@ -74,9 +98,9 @@ class Index extends React.Component {
                   <NewsCard
                     item={post}
                     key={post.uid}
-                    lang={lng}
                     phone={phone}
                     size="medium"
+                    lang={languageFromURL}
                   />
                 );
               }
@@ -84,8 +108,8 @@ class Index extends React.Component {
                 <NewsCard
                   item={post}
                   key={post.uid}
-                  lang={lng}
                   phone={phone}
+                  lang={languageFromURL}
                 />
               );
             })}
@@ -96,4 +120,4 @@ class Index extends React.Component {
   }
 }
 
-export default withNamespaces('common')(Index);
+export default withRouter(Index);
