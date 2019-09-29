@@ -1,0 +1,6 @@
+{
+   "localeDir": "components/locales/",
+   "srcPathDirs": ["components/"],
+   "format": "minimal",
+   "sourceLocale": "ru"
+}

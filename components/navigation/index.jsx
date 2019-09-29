@@ -59,7 +59,6 @@ const Nav = ({ router }) => (
       closeOnDocumentClick
       contentStyle={contentStyle}
       trigger={open => <Burger open={open} />}
-      position="top left"
     >
       {close => <Menu close={close} />}
     </Popup>

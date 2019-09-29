@@ -6,6 +6,16 @@
             "ssr": true,
             "displayName": true,
             }
-        ]
-    ]
+        ],
+        "macros",
+        "syntax-dynamic-import",
+        "transform-class-properties"
+    ],
+    "env": {
+        "test": {
+          "plugins": [
+            "dynamic-import-node"
+          ]
+        }
+    }
   }
