@@ -71,6 +71,7 @@ export default class RussiaMap extends Component {
           mapboxApiAccessToken={token}
           mapStyle="mapbox://styles/sorokinvj/cjxeor38t0v111cmm36vbbruc"
           onViewportChange={this.onViewportChange}
+          scrollZoom={false}
         >
           {CITIES.map(this.renderCityMarker)}
           {this.renderPopup()}
