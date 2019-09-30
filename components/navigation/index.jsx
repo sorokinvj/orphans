@@ -28,6 +28,7 @@ const Navbar = styled.nav`
   position: absolute;
   top: 0;
   width: 100%;
+  border-bottom: ${props => (props.border ? '1px solid black' : 'none')};
 
   .container {
     display: flex;
@@ -46,7 +47,7 @@ const Navbar = styled.nav`
 `;
 
 const Nav = ({ router }) => (
-  <Navbar>
+  <Navbar border={router.route !== '/'}>
     <Container>
       <Logo white={router.route === '/'} />
       <Menu white={router.route === '/'} />
