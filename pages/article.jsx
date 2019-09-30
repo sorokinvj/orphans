@@ -25,29 +25,26 @@ const Post = styled.div`
     line-height: 4.6rem;
     font-weight: bold;
     font-family: 'PT Serif';
+    color: black;
+  }
+  .post-lead {
+    margin-top: 1rem;
+    font-size: 2rem;
+    line-height: 4.6rem;
+    font-weight: normal;
+    font-style: italic;
+    font-family: 'PT Sans';
     color: #221E22;
   }
-  .author, .date {
-    margin-top: 3rem;
+  .date {
+    margin-top: 1rem;
     text-transform: uppercase;
     font-family: 'PT Sans';
     font-size: 1.4rem;
     color: #F74B01;
   }
-  .cat {
-    display: inline-block;
-    margin-top: 4rem;
-    margin-right: 1rem;
-    text-transform: uppercase;
-    font-family: 'PT Sans';
-    font-weight: bold;
-    font-size: 1.4rem;
-    color: #515052;
-    padding-bottom: 3px;
-    border-bottom: 2px solid #515052;
-  }
   .content {
-    margin-top: 6rem;
+    margin-top: 3rem;
     p {
       font-family: 'PT Serif';
       font-size: 1.8rem;
@@ -125,32 +122,34 @@ class Article extends Component {
       return (
         <Post>
           <Container>
-            <Row theme={{ '$grid-gutter-width': '50px' }}>
-              <Col lg="2" md="2" />
-              <Col lg="8" md="8" xs="12">
+            <Row>
+              <Col md={{ size: 8, offset: 2 }} xs="12">
+                <div className="title">
+                  {RichText.render(data.title, linkResolver)}
+                </div>
+                <p className="date">
+                  {dayjs(first_publication_date).format('DD/MM/YYYY')}
+                </p>
+                <div className="post-lead">
+                  {RichText.render(data.lead, linkResolver)}
+                </div>
+              </Col>
+              <Col md={{ size: 8, offset: 2 }} xs="12">
                 <div className="hero">
                   <img src={phone ? data.wallpaper.mob.url : data.wallpaper.url} alt={data.title[0].text} />
                 </div>
               </Col>
             </Row>
-            <Row theme={{ '$grid-gutter-width': '50px' }}>
-              <Col lg="2" md="2" />
-              <Col lg="8" md="8" xs="12">
-                {RichText.render(data.title, linkResolver)}
+            <Row>
+              <Col md={{ size: 8, offset: 2 }} xs="12">
+
               </Col>
             </Row>
-            <Row theme={{ '$grid-gutter-width': '50px' }}>
-              <Col lg="2" md="2" />
-              <Col lg="2" md="2" xs="12">
-                <p className="date">
-                  {dayjs(first_publication_date).format('DD/MM/YYYY')}
-                </p>
-              </Col>
-            </Row>
-            <Row theme={{ '$grid-gutter-width': '50px' }}>
-              <Col lg="2" md="2" />
-              <Col lg="8" md="8" xs="12">
-                {RichText.render(data.body, linkResolver)}
+            <Row>
+              <Col md={{ size: 8, offset: 2 }} xs="12">
+                <div className="content">
+                  {RichText.render(data.body, linkResolver)}
+                </div>
               </Col>
             </Row>
           </Container>

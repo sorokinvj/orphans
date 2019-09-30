@@ -18,7 +18,7 @@ const { publicRuntimeConfig } = getConfig();
 
 const MainPage = styled.div`
 
-  h1 {
+  .main-title {
     font-family: 'PT Sans';
     font-size: 4.2rem;
     font-weight: bold;
@@ -75,7 +75,7 @@ class Index extends React.Component {
         <Container>
           <Row>
             <Col lg="12" md="12" xs="12">
-              <h1 className="text-center">
+              <h1 className="text-center main-title">
                 <Trans>Истории</Trans>
               </h1>
             </Col>

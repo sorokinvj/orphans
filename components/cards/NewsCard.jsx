@@ -18,8 +18,13 @@ const NewsCard = ({
   } else {
     columnsNumber = 4;
   }
-
+  let leadText = ''
   // console.log("newscard", item)
+  if (item.data.lead) {
+    const words = item.data.lead[0].text.split(' ');
+    console.log('words', words)
+    leadText = words.length > 13 ? (`${words.slice(0, 13).join(' ')}...`) : words.join(' ');
+  }
 
   return (
     <Col lg={columnsNumber} md="6" xs="12">
@@ -27,6 +32,9 @@ const NewsCard = ({
         <a>
           <Card>
             {RichText.render(item.data.title, linkResolver)}
+            <div className="lead">
+              {leadText}
+            </div>
             <Wallpaper src={phone ? item.data.wallpaper.mob.url : item.data.wallpaper.url} />
           </Card>
         </a>
