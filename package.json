@@ -14,6 +14,7 @@
     "@bootstrap-styled/v4": "^3.0.13",
     "@lingui/loader": "^2.8.3",
     "@lingui/react": "^2.8.3",
+    "@next/bundle-analyzer": "^9.0.7",
     "@zeit/next-css": "^1.0.1",
     "dayjs": "^1.8.13",
     "dotenv": "^7.0.0",

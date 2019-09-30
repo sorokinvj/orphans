@@ -1,7 +1,10 @@
 // next.config.js
-const withCSS = require('@zeit/next-css')
+const withCSS = require('@zeit/next-css');
+const withBundleAnalyzer = require('@next/bundle-analyzer')({
+  enabled: process.env.ANALYZE === 'true',
+});
 
-module.exports = withCSS({
+module.exports = withBundleAnalyzer(withCSS({
   webpack(config) {
     const originalEntry = config.entry;
 
@@ -36,4 +39,4 @@ module.exports = withCSS({
     WP_URL: 'https://orphansmap.com',
     MapboxToken: 'pk.eyJ1Ijoic29yb2tpbnZqIiwiYSI6ImNqeGRhZDF3NjBiNXozdXF3YWhjYmdnem8ifQ.z66X1naRqPvEuXj4mmIWRg',
   },
-});
+}));
