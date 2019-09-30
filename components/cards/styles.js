@@ -1,23 +1,35 @@
 import styled from 'styled-components';
 
 export const Card = styled.div`
-    box-shadow: 2px 2px 10px 2px #C6C6C6;
+    border: 2px solid black;
     height: 45rem;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: flex-end;
     margin-bottom: 5rem;
+
+    h1 {
+        font-family: 'PT Serif', serif;
+        font-size: 2.6rem;
+        line-height: 3rem;
+        font-weight: 600;
+        color: #221E22;
+        text-decoration: none;
+        margin: 0;
+        padding: 0 3rem;
+    }
+
+    .lead {
+        font-family: 'PT Sans', sans-serif;
+        font-size: 1.6rem;
+        line-height: 2.3rem;
+        color: #9a9a9a;
+        text-decoration: none;
+        margin: 0;
+        padding: 2rem 3rem 3rem;
+    }
 `;
 
-export const Title = styled.h2`
-    font-family: 'PT Serif';
-    font-size: 2.2rem;
-    line-height: 3rem;
-    color: #221E22;
-    text-decoration: none;
-    margin: 0;
-    padding: 3rem 3rem 0 3rem;
-`;
 
 export const Wallpaper = styled.div`
     position: relative;
