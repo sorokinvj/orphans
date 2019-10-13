@@ -6,7 +6,6 @@ import CityPin from './CityPin';
 import CITIES from './cities';
 
 const Map = styled.section`
-  margin-bottom: 7rem;
   width: 100%;
   height: 60rem;
 `;

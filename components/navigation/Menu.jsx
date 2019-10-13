@@ -35,17 +35,17 @@ const Links = styled.div`
 const Menu = ({ lng, white }) => (
   <Links className="menu" white={white}>
     <ul>
-      <Link href={`/${lng}`}>
+      <Link href={`/${lng}#investigations`}>
+        <a>
+          <li><Trans>Расследования</Trans></li>
+        </a>
+      </Link>
+      <Link href={`/${lng}#stories`}>
         <a>
           <li><Trans>Истории</Trans></li>
         </a>
       </Link>
-      <Link href="/help">
-        <a>
-          <li><Trans>Помощь</Trans></li>
-        </a>
-      </Link>
-      <Link href="/about">
+      <Link href={`/${lng}/about`}>
         <a>
           <li><Trans>О проекте</Trans></li>
         </a>
