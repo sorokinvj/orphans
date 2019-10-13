@@ -8,6 +8,10 @@ import logoBlack from './logoBlack.svg';
 
 const LogoWrap = styled.div`
   display: flex;
+
+  img  {
+    width: 25rem;
+  }
 `;
 
 const Logo = ({ white }) => {
