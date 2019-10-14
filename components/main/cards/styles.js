@@ -11,6 +11,10 @@ export const CardWrap = styled.div`
     background-size: cover;
     margin-top: 6rem;
     padding: 0 3rem;
+    @media (max-width: 415px)  {
+        height: 31rem;
+        margin-top: 3rem;
+    }
 `;
 
 export const Title = styled.h2`
@@ -68,6 +72,10 @@ export const StoryWrap = styled.div`
     padding: 0 3rem;
     @media (max-width: 768px) {
         height: 36rem;
+    }
+    @media (max-width: 415px)  {
+        height: 31rem;
+        margin-top: 3rem;
     }
 `;
 

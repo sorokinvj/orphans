@@ -18,6 +18,9 @@ const Styled = styled.div`
         font-size: 1.6rem;
         line-height: 2.1rem;
         margin-top: 3rem;
+        @media (max-width: 415px) {
+            text-align: center;
+        }
     
         strong {
             font-weight: bold;
@@ -27,16 +30,22 @@ const Styled = styled.div`
     img {
         width: 100%;
     }
+    @media (max-width: 415px) {
+        .center {
+            text-align: center;
+            margin-top: 2rem;
+        }
+    }
 `;
 
-const Quote = props => (
+const Quote = () => (
   <>
-    <Col xs="12" md="3" sm="2">
+    <Col xs={{ size: 6, offset: 3 }} md="3" sm="2">
       <img src="/static/gusarova.jpg" alt="Natalia Gusarova" style={{ borderRadius: '50%', width: '100%' }} />
     </Col>
     <Col xs="12" md="9" lg="7">
       <Styled>
-        <Statement>
+        <Statement className="center">
           <Trans>
                 В детдомах ноль процентов свободы и сто процентов контроля. Но в 18 лет ситуация меняется на противоположную
           </Trans>

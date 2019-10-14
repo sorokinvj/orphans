@@ -14,8 +14,16 @@ const Styled = styled.div`
   height:  40rem;
   padding-top: 10rem;
 
+  @media (max-width: 415px) {
+    padding: 7rem 0;
+    height: 100%;
+  }
+
   .menu {
     margin-top: 1rem;
+    @media (max-width: 415px) {
+      margin: 5rem 0 3rem;
+    }
     li {
       margin-bottom: 3rem;
     }

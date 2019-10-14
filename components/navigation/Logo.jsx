@@ -11,6 +11,12 @@ const LogoWrap = styled.div`
 
   img  {
     width: 25rem;
+    @media (max-width: 415px)  {
+      width: 19rem;
+    }
+    @media (max-width: 320px)  {
+      width: 16rem;
+    }
   }
 `;
 
