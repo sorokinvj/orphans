@@ -8,7 +8,8 @@ import {
 import H1 from '../shared/styled/H1';
 import Card from './cards/Card';
 import Story from './cards/Story';
-
+import Quote from './Quote';
+import Fact from './Fact'
 const Stories = ({ stories, phone, lang }) => (
   <>
     <Row id="stories">
@@ -34,7 +35,7 @@ const Stories = ({ stories, phone, lang }) => (
     </Row>
     <Row>
       <Col xs="12" md="6">
-        <img src="/static/facts1.svg" alt="Facts about orphans in Russia" style={{ marginTop: '6rem' }} />
+          <Fact />
       </Col>
       <Col xs="12" md="6">
         {stories.map((story, index) => {
@@ -42,6 +43,33 @@ const Stories = ({ stories, phone, lang }) => (
           return null;
         })}
       </Col>
+    </Row>
+    <Row style={{ marginTop: '10rem' }}>
+      <Quote />
+    </Row>
+    <Row>
+      {stories.map((story, index) => {
+        if (index > 3 && index < 6) {
+          return (
+            <Col xs="12" md="6">
+              <Card item={story} phone={phone} key={story.id} lang={lang} type="story" />
+            </Col>
+          );
+        }
+        return null;
+      })}
+    </Row>
+    <Row>
+      {stories.map((story, index) => {
+        if (index > 5) {
+          return (
+            <Col xs="12" md="4" key={story.id}>
+              <Story item={story} phone={phone} lang={lang} />
+            </Col>
+          );
+        }
+        return null;
+      })}
     </Row>
   </>
 );

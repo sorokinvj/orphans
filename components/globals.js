@@ -14,6 +14,22 @@ const GlobalStyle = createGlobalStyle`
         padding: 0;
     }
 
+    .container {
+        @media (max-width: 991px) {
+            max-width: 90%;
+        }
+
+        @media (max-width: 768px) {
+            max-width: 720px;
+        }
+        @media (max-width: 415px) {
+            max-width: 390px;
+        }
+        @media (max-width: 320px) {
+            max-width: 290px;
+        }
+    }
+
     a {
         text-decoration: none;
         color: inherit;

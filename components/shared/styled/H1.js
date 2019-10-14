@@ -9,6 +9,10 @@ const H1 = styled.h1`
     line-height: 5.6rem;
     color: #000000;
     margin-top: 12rem;
+    @media (max-width: 768px) {
+        font-size: 4.5rem;
+        line-height: 4.5rem;
+    }
 `;
 
 export default H1;

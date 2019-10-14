@@ -56,15 +56,11 @@ class MyApp extends App {
     const {
       Component, pageProps, phone, tablet, cookieConsent, router,
     } = this.props;
-
-    const theme = {
-      '$grid-gutter-width': tablet || phone ? '30px' : '50px',
-    };
     // console.log('_app', this.props);
 
     return (
       <AppWithI18n initLanguage={router.query.lang}>
-        <BootstrapProvider injectGlobal reset theme={theme}>
+        <BootstrapProvider injectGlobal reset>
           <GlobalStyle />
           <GeneralHead />
           <Nav cookieConsent={cookieConsent} />

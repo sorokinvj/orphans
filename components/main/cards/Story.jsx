@@ -10,6 +10,9 @@ const StyledStory = styled.div`
   .userpic {
     border-radius: 50%;
     margin-top: 5rem;
+    @media (max-width: 768px) {
+      margin-top: 3rem;
+    }
   }
 `;
 

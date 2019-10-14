@@ -23,6 +23,10 @@ export const Title = styled.h2`
     color: white;
     background: #DE040D;
     padding: 0 1rem;
+    @media (max-width: 768px) {
+        font-size: 2.4rem;
+        line-height: 3.2rem;
+    }
 `;
 
 
@@ -62,6 +66,9 @@ export const StoryWrap = styled.div`
     background-size: cover;
     margin-top: 6rem;
     padding: 0 3rem;
+    @media (max-width: 768px) {
+        height: 36rem;
+    }
 `;
 
 export const Name = styled.h4`
@@ -73,6 +80,10 @@ export const Name = styled.h4`
     text-align: center;
     color: #DE040D;
     margin-top: 2rem;
+    @media (max-width: 768px) {
+        font-size: 2rem;
+        line-height: 3rem;
+    }
 `;
 
 export const Action = styled.h4`
@@ -82,6 +93,10 @@ export const Action = styled.h4`
     line-height: 4rem;
     text-align: center;
     color: #000000;
+    @media (max-width: 768px) {
+        font-size: 2rem;
+        line-height: 3rem;
+    }
 `;
 
 export const Place = styled.p`
