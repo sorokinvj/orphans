@@ -11,7 +11,7 @@ import Story from './cards/Story';
 
 const Stories = ({ stories, phone, lang }) => (
   <>
-    <Row>
+    <Row id="stories">
       <Col xs="12" md="12">
         <H1>
           <Trans>
@@ -38,7 +38,7 @@ const Stories = ({ stories, phone, lang }) => (
       </Col>
       <Col xs="12" md="6">
         {stories.map((story, index) => {
-          if (index === 3) return <Card item={story} phone={phone} key={story.id} lang={lang} />;
+          if (index === 3) return <Card item={story} phone={phone} key={story.id} lang={lang} type="story" />;
           return null;
         })}
       </Col>

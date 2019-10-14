@@ -13,7 +13,7 @@ import H1 from '../shared/styled/H1';
 
 const Investigations = ({ investigations, phone, lang }) => (
   <>
-    <Row>
+    <Row id="investigations">
       <Col xs="12" md="12">
         <H1>
           <Trans>

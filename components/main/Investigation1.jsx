@@ -27,6 +27,7 @@ const Investigation1 = ({ unit1, unit2, phone, lang }) => {
             item={unit1}
             lang={lang}
             size="big"
+            type="investigation"
           />
         </Col>
         <Col xs="12" md="4">
@@ -34,6 +35,7 @@ const Investigation1 = ({ unit1, unit2, phone, lang }) => {
             phone={phone}
             item={unit2}
             lang={lang}
+            type="investigation"
           />
         </Col>
       </Row>

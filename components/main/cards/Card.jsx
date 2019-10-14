@@ -8,9 +8,9 @@ import {
 
 
 const Card = ({
-  item, lang, phone,
+  item, lang, phone, type,
 }) => (
-  <Link href={`/${lang}/investigation/${item.uid}`}>
+  <Link href={`/${lang}/${type}/${item.uid}`}>
     <a>
       <CardWrap background={phone ? item.data.wallpaper.mob.url : item.data.wallpaper.url}>
         <Title>

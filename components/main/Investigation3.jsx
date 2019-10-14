@@ -13,6 +13,7 @@ const Investigation3 = ({ unit, phone, lang }) => (
         phone={phone}
         item={unit}
         lang={lang}
+        type="investigation"
       />
     </Col>
     <Col xs="12" md="6" />
