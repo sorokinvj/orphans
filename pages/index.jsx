@@ -31,7 +31,7 @@ class Index extends React.Component {
       Prismic.Predicates.at('document.type', 'post'),
       {
         lang: language,
-        orderings: '[document.first_publication_date desc]',
+        orderings: '[document.first_publication_date]',
       },
     );
     const investigations = await client.query(
@@ -63,6 +63,7 @@ class Index extends React.Component {
     const { content } = this.state;
     const { stories, investigations } = content;
     const { phone } = this.props;
+    const lang = this.context;
     // console.log('main', this.state);
     return (
       <>
@@ -72,50 +73,8 @@ class Index extends React.Component {
           stories={stories}
           investigations={investigations}
           phone={phone}
+          lang={lang}
         />
-        {/* <Container>
-          <Row>
-            <Col lg="12" md="12" xs="12">
-              <h1 className="text-center main-title">
-                <Trans>Истории</Trans>
-              </h1>
-            </Col>
-          </Row>
-          <Row>
-            {content.results.map((post, index) => {
-              if (index === 1) {
-                return (
-                  <NewsCard
-                    item={post}
-                    key={post.uid}
-                    size="large"
-                    phone={phone}
-                    lang={languageFromURL}
-                  />
-                );
-              }
-              if (index === 5 || index === 6) {
-                return (
-                  <NewsCard
-                    item={post}
-                    key={post.uid}
-                    phone={phone}
-                    size="medium"
-                    lang={languageFromURL}
-                  />
-                );
-              }
-              return (
-                <NewsCard
-                  item={post}
-                  key={post.uid}
-                  phone={phone}
-                  lang={languageFromURL}
-                />
-              );
-            })}
-          </Row>
-        </Container> */}
       </>
     );
   }

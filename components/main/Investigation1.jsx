@@ -13,8 +13,7 @@ const Styled = styled.div`
   padding-top: 8rem;
 `;
 
-const Investigation1 = ({ unit1, unit2, phone }) => {
-  console.log('inv 1', unit1, unit2);
+const Investigation1 = ({ unit1, unit2, phone, lang }) => {
   return (
     <Styled>
       <Row>
@@ -26,12 +25,15 @@ const Investigation1 = ({ unit1, unit2, phone }) => {
           <Card
             phone={phone}
             item={unit1}
+            lang={lang}
+            size="big"
           />
         </Col>
         <Col xs="12" md="4">
           <Case
             phone={phone}
             item={unit2}
+            lang={lang}
           />
         </Col>
       </Row>

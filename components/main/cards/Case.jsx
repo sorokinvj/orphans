@@ -1,16 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Link from 'next/link';
-import { Col } from '@bootstrap-styled/v4';
 import {
   CardWrap, CaseTitle,
 } from './styles';
 
 
-const Card = ({
+const Case = ({
   item, lang, phone,
 }) => (
-  <Link href={`/${lang}/article/${item.uid}`}>
+  <Link href={`/${lang}/investigation/${item.uid}`}>
     <a>
       <CardWrap background={phone ? item.data.wallpaper.mob.url : item.data.wallpaper.url}>
         <CaseTitle>
@@ -21,7 +20,7 @@ const Card = ({
   </Link>
 );
 
-Card.propTypes = {
+Case.propTypes = {
   item: PropTypes.shape({
     tags: PropTypes.arrayOf(PropTypes.string),
   }),
@@ -29,10 +28,10 @@ Card.propTypes = {
   lang: PropTypes.string,
 };
 
-Card.defaultProps = {
+Case.defaultProps = {
   item: {},
   lang: 'ru',
   phone: null,
 };
 
-export default Card;
+export default Case;

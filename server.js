@@ -22,7 +22,13 @@ app.prepare().then(() => {
   server.get('/:lang', (req, res) => app.render(req, res, '/',
     { lang: req.params.lang }));
 
-  server.get('/:lang/article/:uid', (req, res) => app.render(req, res, '/article',
+  server.get('/:lang/story/:uid', (req, res) => app.render(req, res, '/story',
+    {
+      lang: req.params.lang,
+      uid: req.params.uid,
+    }));
+
+  server.get('/:lang/investigation/:uid', (req, res) => app.render(req, res, '/investigation',
     {
       lang: req.params.lang,
       uid: req.params.uid,
