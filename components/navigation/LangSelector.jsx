@@ -16,6 +16,13 @@ const Flags = styled.div`
       margin: 0 1rem;
       cursor: pointer;
     }
+    @media (max-width: 415px)  {
+      margin: 0;
+      font-size: 1.3rem;
+      img {
+        width:1.8rem;
+      }
+    }
 `;
 
 const LangSelector = ({ white }) => {
