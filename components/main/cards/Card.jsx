@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Link from 'next/link';
-import { Col } from '@bootstrap-styled/v4';
 import {
   CardWrap, Title, Lead,
 } from './styles';

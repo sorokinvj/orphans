@@ -7,7 +7,7 @@ export const CardWrap = styled.div`
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background: ${props => `linear-gradient(rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.8)), url(${props.background})`};
+    background: ${props => `linear-gradient(rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.6)), url(${props.background})`};
     background-size: cover;
     margin-top: 6rem;
     padding: 0 3rem;
@@ -25,7 +25,7 @@ export const Title = styled.h2`
     line-height: 4rem;
     text-align: center;
     color: white;
-    background: #DE040D;
+    background: #b10007;
     padding: 0 1rem;
     @media (max-width: 768px) {
         font-size: 2.4rem;
