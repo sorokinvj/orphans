@@ -60,6 +60,22 @@ const Post = styled.div`
       color: #221E22;
       margin: 3.5rem 0 2.6rem 0;
     }
+    img {
+      width: 100%;
+    }
+    .embed {
+      position: relative;
+      padding-bottom: 56.25%; /* 16:9 */
+      padding-top: 25px;
+      height: 0;
+      iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+      }
+    }
   }
   a {
     text-decoration: none;
@@ -70,7 +86,7 @@ const Post = styled.div`
 `;
 
 
-class Article extends Component {
+class Story extends Component {
   static contextType = LanguageContext
 
   state = {
@@ -142,11 +158,6 @@ class Article extends Component {
             </Row>
             <Row>
               <Col md={{ size: 8, offset: 2 }} xs="12">
-
-              </Col>
-            </Row>
-            <Row>
-              <Col md={{ size: 8, offset: 2 }} xs="12">
                 <div className="content">
                   {RichText.render(data.body, linkResolver)}
                 </div>
@@ -160,4 +171,4 @@ class Article extends Component {
   }
 }
 
-export default withRouter(Article);
+export default withRouter(Story);
