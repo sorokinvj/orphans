@@ -13,37 +13,52 @@ const Styled = styled.div`
     line-height: 3.2rem;
     font-family: 'PT Sans';
     font-weight: bold;
+
+    @media (max-width: 415px) {
+      text-align: center;
+    }
+
   }
 
-  @media (max-width: 415px) {
-    margin: 6rem 0 3rem;
-  }
 
-  img {
-    width: 15rem;
-    border-radius: 50%;
-    margin-top: 2rem;
-  }
 
   .author {
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: flex-end;
-  }
-  .name {
-    font-family: 'PT Sans';
-    font-style: normal;
-    font-size: 1.6rem;
-    line-height: 2.1rem;
-    margin-right: 3rem;
-    text-align: right;
     @media (max-width: 415px) {
-      text-align: center;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
     }
 
-    strong {
-      font-weight: bold;
+    img {
+      width: 15rem;
+      border-radius: 50%;
+      margin-top: 2rem;
+      @media (max-width: 415px) {
+        order: 1;
+        margin-top: 5rem;
+      }
+    }
+
+    .name {
+      font-family: 'PT Sans';
+      font-style: normal;
+      font-size: 1.6rem;
+      line-height: 2.1rem;
+      margin-right: 3rem;
+      text-align: right;
+      @media (max-width: 415px) {
+        text-align: center;
+        margin: 4rem 0;
+        order: 2;
+      }
+
+      strong {
+        font-weight: bold;
+      }
     }
   }
 `;
