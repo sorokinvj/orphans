@@ -8,7 +8,7 @@ import Investigations from './Investigations';
 import Intro from './Intro';
 import Stories from './Stories';
 
-const MainPage = ({ stories, investigations, phone, lang }) => (
+const MainPage = ({ stories, investigations, phone, lang, videos }) => (
   <StyledMainPage>
     <Container>
       <Intro />
@@ -21,6 +21,7 @@ const MainPage = ({ stories, investigations, phone, lang }) => (
         stories={stories}
         phone={phone}
         lang={lang}
+        videos={videos}
       />
     </Container>
   </StyledMainPage>

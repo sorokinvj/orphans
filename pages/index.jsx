@@ -18,6 +18,7 @@ class Index extends React.Component {
     content: {
       stories: [],
       investigations: [],
+      videos: [],
     },
     currentLang: null,
   }
@@ -41,10 +42,18 @@ class Index extends React.Component {
         orderings: '[document.first_publication_date desc]',
       },
     );
+    const videos = await client.query(
+      Prismic.Predicates.at('document.type', 'video'),
+      {
+        lang: language,
+        orderings: '[document.first_publication_date desc]',
+      },
+    );
     this.setState({
       content: {
         stories: stories.results,
         investigations: investigations.results,
+        videos: videos.results,
       },
     });
   }
@@ -61,7 +70,7 @@ class Index extends React.Component {
   render() {
     const { MapboxToken } = publicRuntimeConfig;
     const { content } = this.state;
-    const { stories, investigations } = content;
+    const { stories, investigations, videos } = content;
     const { phone } = this.props;
     const lang = this.context;
     // console.log('main', this.state);
@@ -72,6 +81,7 @@ class Index extends React.Component {
         <MainPage
           stories={stories}
           investigations={investigations}
+          videos={videos}
           phone={phone}
           lang={lang}
         />

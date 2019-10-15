@@ -34,7 +34,7 @@ const Investigations = ({ investigations, phone, lang }) => (
         <StyledIMG src="/static/graph1.svg" alt="search results of 'buy child' on Yandex" />
       </Col>
       {investigations.map(unit => (
-        <Col xs="12" md="6">
+        <Col xs="12" md="6" key={unit.id}>
           <Case
             phone={phone}
             item={unit}

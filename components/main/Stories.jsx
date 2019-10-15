@@ -9,7 +9,9 @@ import H1 from '../shared/styled/H1';
 import Card from './cards/Card';
 import Story from './cards/Story';
 import Quote from './Quote';
-const Stories = ({ stories, phone, lang }) => (
+import Video from './Video';
+
+const Stories = ({ stories, phone, lang, videos }) => (
   <>
     <Row id="stories">
       <Col xs="12" md="12">
@@ -44,11 +46,18 @@ const Stories = ({ stories, phone, lang }) => (
       </Col>
     </Row>
     <Row>
+      {videos.map(video => (
+        <Col xs="12" md="4" key={video.uid}>
+          <Video video={video} />
+        </Col>
+      ) )}
+    </Row>
+    <Row>
       {stories.map((story, index) => {
         if (index > 3 && index < 6) {
           return (
-            <Col xs="12" md="6">
-              <Card item={story} phone={phone} key={story.id} lang={lang} type="story" />
+            <Col xs="12" md="6" key={story.id}>
+              <Card item={story} phone={phone} lang={lang} type="story" />
             </Col>
           );
         }
