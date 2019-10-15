@@ -12,7 +12,7 @@ const Post = styled.div`
     font-size: 3.7rem;
     line-height: 4.6rem;
     font-weight: bold;
-    font-family: 'PT Serif';
+    font-family: 'Charter', serif;
     color: black;
   }
   .post-lead {
@@ -21,27 +21,36 @@ const Post = styled.div`
     line-height: 4.6rem;
     font-weight: normal;
     font-style: italic;
-    font-family: 'PT Sans';
+    font-family: 'PT Sans', sans-serif;
     color: #221E22;
   }
   .date {
     margin-top: 1rem;
     text-transform: uppercase;
-    font-family: 'PT Sans';
+    font-family: 'PT Sans', sans-serif;
     font-size: 1.4rem;
     color: #F74B01;
   }
   .content {
+
     margin-top: 3rem;
     p {
-      font-family: 'PT Serif';
-      font-size: 1.8rem;
-      line-height: 3rem;
-      color: #221E22;
-      margin-bottom: 2.6rem;
+        font-family: 'PT Serif', sans-serif;
+        font-size: 1.8rem;
+        line-height: 3rem;
+        color: #221E22;
+        margin-bottom: 2.6rem;
+    }
+    h2 {
+        margin: 1rem 0;
+        font-size: 2.5rem;
+        line-height: 3.5rem;
+        font-weight: bold;
+        font-family: 'Charter', serif;
+        color: black;
     }
     h3 {
-      font-family: 'PT Sans';
+      font-family: 'PT Sans', sans-serif;
       font-size: 3rem;
       font-weight: bold;
       line-height: 3.6rem;

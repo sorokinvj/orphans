@@ -9,7 +9,7 @@ const GlobalStyle = createGlobalStyle`
     }
 
     body {
-        @import url('https://fonts.googleapis.com/css?family=PT+Sans:400,400i,700,700i&subset=cyrillic');
+        @import url('https://fonts.googleapis.com/css?family=PT+Sans:400,400i,700|PT+Serif&display=swap&subset=cyrillic');
         margin: 0;
         padding: 0;
     }
