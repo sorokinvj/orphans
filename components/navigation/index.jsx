@@ -28,7 +28,7 @@ const Navbar = styled.nav`
   position: absolute;
   top: 0;
   width: 100%;
-  border-bottom: ${props => (props.border ? '1px solid rgba(0,0,0,01.3)' : 'none')};
+  border-bottom: ${props => (props.border ? '1px solid rgba(0,0,0,0.13)' : 'none')};
 
   .container {
     display: flex;
