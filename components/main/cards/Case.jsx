@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Link from 'next/link';
 import {
-  CardWrap, CaseTitle,
+  CardWrap, CaseTitle, Lead,
 } from './styles';
 
 
@@ -13,8 +13,11 @@ const Case = ({
     <a>
       <CardWrap background={phone ? item.data.wallpaper.mob.url : item.data.wallpaper.url}>
         <CaseTitle>
-          {item.data.lead[0].text}
+          {item.data.title[0].text}
         </CaseTitle>
+        <Lead>
+          {item.data.lead[0].text}
+        </Lead>
       </CardWrap>
     </a>
   </Link>

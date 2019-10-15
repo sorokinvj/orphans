@@ -1,16 +1,19 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { Trans } from '@lingui/macro';
-import { Col } from '@bootstrap-styled/v4';
-import Statement from '../shared/styled/Statement';
 
 const Styled = styled.div`
   display: flex;
   flex-direction: column;
   margin-top: 6rem;
-  text-align: center;
-  align-items: center;
+
+  .quote {
+    text-align: right;
+    font-size: 2.4rem;
+    line-height: 3.2rem;
+    font-family: 'PT Sans';
+    font-weight: bold;
+  }
 
   @media (max-width: 415px) {
     margin: 6rem 0 3rem;
@@ -23,13 +26,20 @@ const Styled = styled.div`
   }
 
   .author {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+  }
+  .name {
     font-family: 'PT Sans';
     font-style: normal;
     font-size: 1.6rem;
     line-height: 2.1rem;
-    margin-top: 2rem;
+    margin-right: 3rem;
+    text-align: right;
     @media (max-width: 415px) {
-        text-align: center;
+      text-align: center;
     }
 
     strong {
@@ -40,28 +50,26 @@ const Styled = styled.div`
 
 const Quote = () => (
   <Styled>
-    <Statement className="center">
+    <div className="quote">
       <Trans>
-        «В детдомах ноль процентов свободы и сто процентов контроля. Но в 18 лет ситуация меняется на противоположную»
+        «У этих детей есть внутренняя стигма, что для них уже все предопределено, что как только они выйдут за порог, то тут же попадут в нехорошую историю. Для многих социализация так и не состоится. Они так и не поймут, как и для чего они живут»
       </Trans>
-    </Statement>
-    <img src="/static/gusarova.jpg" alt="Natalia Gusarova" />
+    </div>
     <div className="author">
-      <strong>
+      <div className="name">
+        <strong>
+          <Trans>
+            Александр Гезалов,
+          </Trans>
+        </strong>
+        <br />
         <Trans>
-              Наталья Гусарова,
+          общественный деятель
         </Trans>
-      </strong>
-      <br />
-      <Trans>
-            психолог
-      </Trans>
+      </div>
+      <img src="/static/gezalov.jpg" alt="Alexander Gezalov" />
     </div>
   </Styled>
 );
-
-Quote.propTypes = {
-
-};
 
 export default Quote;

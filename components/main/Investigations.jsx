@@ -7,7 +7,7 @@ import {
   Col,
 } from '@bootstrap-styled/v4';
 import H1 from '../shared/styled/H1';
-import Card from './cards/Card';
+import Case from './cards/Case';
 import Fact from './Fact';
 
 const StyledIMG = styled.img`
@@ -35,7 +35,7 @@ const Investigations = ({ investigations, phone, lang }) => (
       </Col>
       {investigations.map(unit => (
         <Col xs="12" md="6">
-          <Card
+          <Case
             phone={phone}
             item={unit}
             lang={lang}

@@ -34,16 +34,17 @@ export const Title = styled.h2`
 `;
 
 
-export const CaseTitle = styled.span`
+export const CaseTitle = styled.h2`
     font-family: 'Charter', serif;
     font-style: normal;
-    font-weight: normal;
-    font-size: 2.6rem;
+    font-weight: bold;
+    font-size: 3rem;
     line-height: 3.4rem;
     color: #000000;
     text-decoration: underline;
     text-decoration-skip-ink: none;
-    display: inline;
+    width: 80%;
+    text-align: center;
 `;
 
 export const Lead = styled.p`
@@ -53,7 +54,6 @@ export const Lead = styled.p`
     font-size: 1.6rem;
     line-height: 2.4rem;
     width: 80%;
-    /* identical to box height, or 112% */
     text-align: center;
     color: #000000;
     margin-top: 1.2rem;
@@ -108,7 +108,7 @@ export const Action = styled.h4`
 `;
 
 export const Place = styled.p`
-    font-family: Helvetica;
+    font-family: Helvetica, sans-serif;
     font-style: normal;
     font-weight: normal;
     font-size: 12px;
