@@ -18,10 +18,6 @@ const Investigation1 = ({ unit1, unit2, phone, lang }) => {
     <Styled>
       <Row>
         <Col xs="12" md="6">
-          <img src="/static/graph1.svg" alt="search results of 'buy child' on Yandex" style={{ width: '100%' }} />
-        </Col>
-        <Col xs="12" md="6" />
-        <Col xs="12" md="8">
           <Card
             phone={phone}
             item={unit1}
