@@ -44,7 +44,7 @@ const Stories = ({ stories, phone, lang }) => (
         })}
       </Col>
     </Row>
-    <Row style={{ marginTop: '10rem' }}>
+    <Row>
       <Quote />
     </Row>
     <Row>

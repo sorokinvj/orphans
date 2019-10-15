@@ -45,7 +45,7 @@ const Menu = ({ lng, white }) => (
           <li><Trans>Истории</Trans></li>
         </a>
       </Link>
-      <Link href={`/${lng}/about`}>
+      <Link href={`/${lng}#about`}>
         <a>
           <li><Trans>О проекте</Trans></li>
         </a>
