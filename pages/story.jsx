@@ -11,6 +11,7 @@ import { RichText } from 'prismic-reactjs';
 import LanguageContext from '../components/context/LanguageContext';
 import { client, linkResolver } from '../prismic-configuration';
 import Post from './styled';
+import Loading from '../components/shared/Loading';
 
 class Story extends Component {
   static contextType = LanguageContext
@@ -19,6 +20,7 @@ class Story extends Component {
     content: {
       results: [],
     },
+    isLoading: true,
     currentLang: null,
   }
 
@@ -36,6 +38,7 @@ class Story extends Component {
       content: {
         results: response.results,
       },
+      isLoading: false,
     });
     // console.log('content', this.state.content);
   }
@@ -57,8 +60,8 @@ class Story extends Component {
 
   render() {
     const { phone } = this.props;
-    const { content } = this.state;
-    // console.log('article', this.props);
+    const { content, isLoading } = this.state;
+    if (isLoading) return <Loading visible={isLoading} />;
     if (content.results.length > 0) {
       const { data, first_publication_date } = content.results[0];
       return (
