@@ -9,7 +9,6 @@ import H1 from '../shared/styled/H1';
 import Card from './cards/Card';
 import Story from './cards/Story';
 import Quote from './Quote';
-import Fact from './Fact'
 const Stories = ({ stories, phone, lang }) => (
   <>
     <Row id="stories">
@@ -35,7 +34,7 @@ const Stories = ({ stories, phone, lang }) => (
     </Row>
     <Row>
       <Col xs="12" md="6">
-          <Fact />
+        <Quote />
       </Col>
       <Col xs="12" md="6">
         {stories.map((story, index) => {
@@ -43,9 +42,6 @@ const Stories = ({ stories, phone, lang }) => (
           return null;
         })}
       </Col>
-    </Row>
-    <Row>
-      <Quote />
     </Row>
     <Row>
       {stories.map((story, index) => {

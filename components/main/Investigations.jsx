@@ -8,6 +8,7 @@ import {
 } from '@bootstrap-styled/v4';
 import H1 from '../shared/styled/H1';
 import Card from './cards/Card';
+import Fact from './Fact';
 
 const StyledIMG = styled.img`
   height: 42rem;
@@ -43,6 +44,11 @@ const Investigations = ({ investigations, phone, lang }) => (
           />
         </Col>
       ))}
+    </Row>
+    <Row style={{ paddingTop: '8rem' }}>
+      <Col xs="12" md="12">
+        <Fact phone={phone}  />
+      </Col>
     </Row>
   </>
 );

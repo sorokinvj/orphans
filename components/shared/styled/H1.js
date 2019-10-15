@@ -13,6 +13,10 @@ const H1 = styled.h1`
         font-size: 4.5rem;
         line-height: 4.5rem;
     }
+    @media (max-width: 415px) {
+        margin-bottom: 6rem;
+
+    }
 `;
 
 export default H1;
