@@ -32,7 +32,6 @@ const Post = styled.div`
     color: #F74B01;
   }
   .content {
-
     margin-top: 3rem;
     p {
         font-family: 'PT Serif', sans-serif;
@@ -41,7 +40,7 @@ const Post = styled.div`
         color: #221E22;
         margin-bottom: 2.6rem;
     }
-    h2 {
+    h2, strong {
         margin: 1rem 0;
         font-size: 2.5rem;
         line-height: 3.5rem;
