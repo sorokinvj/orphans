@@ -3,20 +3,24 @@ import Link from 'next/link';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { Trans } from '@lingui/macro';
+import { withRouter } from 'next/router';
 
 const Links = styled.div`
+
   display: flex;
+  width: 100%;
+  height: 100%;
 
   ul {
     list-style: none;
     @media (max-width: 768px) {
       display: flex;
       flex-direction: column;
-      text-align: right;
-      margin: 4rem 3rem 0 auto;
+      text-align: center;
+      margin: 11rem auto 0 auto;
     }
     li {
-      color: ${props => (props.white ? 'white' : 'black')};
+      color: white;
       font-size: 1.6rem;
       text-transform: uppercase;
       display: inline-block;
@@ -24,7 +28,6 @@ const Links = styled.div`
       margin-right: 4rem;
       font-family: 'PT Sans';
       @media (max-width: 768px) {
-        color: #515052;
         margin: 0 0 2rem 0;
       }
     }
@@ -32,8 +35,8 @@ const Links = styled.div`
 `;
 
 
-const Menu = ({ lng, white }) => (
-  <Links className="menu" white={white}>
+const Menu = ({ lng, router }) => (
+  <Links className="menu" white={router.pathname === '/'}>
     <ul>
       <Link href={`/${lng}#investigations`}>
         <a>
@@ -56,13 +59,10 @@ const Menu = ({ lng, white }) => (
 
 Menu.propTypes = {
   lng: PropTypes.string,
-  white: PropTypes.bool,
 };
 
 Menu.defaultProps = {
   lng: 'ru',
-  t: () => {},
-  white: false,
 };
 
-export default Menu;
+export default withRouter(Menu);

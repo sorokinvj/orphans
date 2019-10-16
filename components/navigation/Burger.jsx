@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import { withRouter } from 'next/router';
 
 const BurgerButton = styled.div`
 
@@ -10,6 +11,7 @@ const BurgerButton = styled.div`
     position: relative;
     top: 12px;
     right: 1rem;
+    z-index:1000;
 
     .burger-menu {
       display: inline-block;
@@ -17,12 +19,12 @@ const BurgerButton = styled.div`
       z-index: 9999;
       background: transparent;
       padding: 10px;
-      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+      box-shadow: 0;
 
       .bar1, .bar2, .bar3 {
         width: 25px;
         height: 3px;
-        background-color: white;
+        background-color: ${props => (props.white ? 'white' : 'black')};
         margin: 4px 0;
         transition: 0.4s;
       }
@@ -43,8 +45,8 @@ const BurgerButton = styled.div`
     }
 `;
 
-const Burger = ({ open, ...props }) => (
-  <BurgerButton>
+const Burger = ({ open, router, ...props }) => (
+  <BurgerButton white={router.pathname === '/'}>
     <div className={open ? 'burger-menu open' : 'burger-menu'} {...props}>
       <div className="bar1" key="b1" />
       <div className="bar2" key="b2" />
@@ -60,4 +62,4 @@ Burger.defaultProps = {
   open: false,
 };
 
-export default Burger;
+export default withRouter(Burger);

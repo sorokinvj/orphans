@@ -12,10 +12,10 @@ import LangSelector from './LangSelector';
 
 const contentStyle = {
   position: 'relative',
-  background: 'rgb(255, 255, 255)',
-  width: 'auto',
+  background: 'rgba(0, 0, 0, 0.3)',
+  width: '100%',
   height: '100%',
-  margin: '7rem 0 0 auto',
+  margin: '0',
   border: '0',
   padding: '0',
 };
@@ -47,10 +47,12 @@ const Navbar = styled.nav`
 `;
 
 const Nav = ({ router }) => (
+
   <Navbar border={router.route !== '/'}>
+    {console.log('nav', router)}
     <Container>
       <Logo white={router.route === '/'} />
-      <Menu white={router.route === '/'} />
+      <Menu />
       <LangSelector white={router.route === '/'} />
     </Container>
 
@@ -59,7 +61,7 @@ const Nav = ({ router }) => (
       modal
       closeOnDocumentClick
       contentStyle={contentStyle}
-      trigger={open => <div><Burger open={open} /></div>}
+      trigger={open => <Burger open={open} />}
     >
       {close => <Menu close={close} />}
     </Popup>
