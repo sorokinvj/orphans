@@ -8,6 +8,9 @@ import CITIES from './cities';
 const Map = styled.section`
   width: 100%;
   height: 60rem;
+  @media (max-width: 415px) {
+    height: 40rem;
+  }
 `;
 
 export default class RussiaMap extends Component {
