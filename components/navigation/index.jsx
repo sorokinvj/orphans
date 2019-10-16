@@ -34,10 +34,11 @@ const Navbar = styled.nav`
     display: flex;
     align-items: center;
     justify-content: space-between;
-    @media (max-width:768px) {
-      .menu {
-        display: none;
-      }
+  }
+
+  @media (max-width:991px) {
+    .container > .menu {
+      display: none;
     }
   }
   // стили для мобильного меню
@@ -54,17 +55,17 @@ const Nav = ({ router }) => (
       <Logo white={router.route === '/'} />
       <Menu />
       <LangSelector white={router.route === '/'} />
+      {/* burger button and mobile menu */}
+      <Popup
+        modal
+        closeOnDocumentClick
+        contentStyle={contentStyle}
+        trigger={open => <Burger open={open} />}
+      >
+        {close => <Menu close={close} />}
+      </Popup>
     </Container>
 
-    {/* burger button and mobile menu */}
-    <Popup
-      modal
-      closeOnDocumentClick
-      contentStyle={contentStyle}
-      trigger={open => <Burger open={open} />}
-    >
-      {close => <Menu close={close} />}
-    </Popup>
   </Navbar>
 
 );

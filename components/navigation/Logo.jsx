@@ -8,7 +8,9 @@ import logoBlack from './logoBlack.svg';
 
 const LogoWrap = styled.div`
   display: flex;
-
+  @media (max-width: 415px)  {
+    padding-top: 4px;
+  }
   img  {
     width: 25rem;
     @media (max-width: 415px)  {

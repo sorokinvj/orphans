@@ -11,6 +11,12 @@ const Flags = styled.div`
     font-weight: bold;
     font-size: 2rem;
     margin: 0.3rem 0rem 0 0;
+    width: 16rem;
+    display: flex;
+    flex-direction: row;
+    flex-flow: nowrap;
+    justify-content: flex-end;
+    
     img {
       width: 2.5rem;
       margin: 0 1rem;

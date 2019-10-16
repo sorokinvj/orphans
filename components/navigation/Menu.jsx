@@ -13,7 +13,8 @@ const Links = styled.div`
 
   ul {
     list-style: none;
-    @media (max-width: 768px) {
+    margin: 2.5rem auto 0 auto;
+    @media (max-width: 991px) {
       display: flex;
       flex-direction: column;
       text-align: center;

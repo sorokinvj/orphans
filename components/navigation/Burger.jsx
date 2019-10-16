@@ -5,20 +5,20 @@ import { withRouter } from 'next/router';
 
 const BurgerButton = styled.div`
 
-    @media (min-width: 769px) {
+    @media (min-width: 991px) {
       display: none;
     }
     position: relative;
-    top: 12px;
+    top: 1px;
     right: 1rem;
     z-index:1000;
+    margin-left: 2rem;
 
     .burger-menu {
       display: inline-block;
       cursor: pointer;
       z-index: 9999;
       background: transparent;
-      padding: 10px;
       box-shadow: 0;
 
       .bar1, .bar2, .bar3 {
