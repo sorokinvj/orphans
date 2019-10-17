@@ -7,7 +7,7 @@ const Styled = styled.div`
     width: 100%;
     margin-top: 6rem;
     @media (max-width: 415px) {
-      margin: 0;
+      margin: 6rem 0 0 0;
     }
   }
 `;

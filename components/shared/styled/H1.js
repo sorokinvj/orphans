@@ -14,8 +14,7 @@ const H1 = styled.h1`
         line-height: 4.5rem;
     }
     @media (max-width: 415px) {
-        margin-bottom: 6rem;
-
+        margin: 8rem 0 4rem;
     }
 `;
 

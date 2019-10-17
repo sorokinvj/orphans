@@ -74,7 +74,6 @@ export const StoryWrap = styled.div`
         height: 36rem;
     }
     @media (max-width: 415px)  {
-        height: 31rem;
         margin-top: 3rem;
     }
 `;

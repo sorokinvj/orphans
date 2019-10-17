@@ -11,7 +11,8 @@ import Case from './cards/Case';
 import Fact from './Fact';
 
 const StyledIMG = styled.img`
-  height: 42rem;
+  height: 36rem;
+  margin-top: 6rem;
   @media (max-width: 415px) {
     width: 100%;
     height: auto;
@@ -29,7 +30,7 @@ const Investigations = ({ investigations, phone, lang }) => (
         </H1>
       </Col>
     </Row>
-    <Row style={{ paddingTop: '8rem' }}>
+    <Row>
       <Col xs="12" md="6">
         <StyledIMG src="/static/graph1.svg" alt="search results of 'buy child' on Yandex" />
       </Col>
@@ -45,9 +46,9 @@ const Investigations = ({ investigations, phone, lang }) => (
         </Col>
       ))}
     </Row>
-    <Row style={{ paddingTop: '8rem' }}>
+    <Row>
       <Col xs="12" md="12">
-        <Fact phone={phone}  />
+        <Fact phone={phone} />
       </Col>
     </Row>
   </>
