@@ -110,11 +110,34 @@ export const Place = styled.p`
     font-family: Helvetica, sans-serif;
     font-style: normal;
     font-weight: normal;
-    font-size: 12px;
-    line-height: 12px;
+    font-size: 1.2rem;
+    line-height: 1.2rem;
     letter-spacing: 0.1em;
     text-transform: uppercase;
     color: rgba(0, 0, 0, 0.8);
     position: absolute;
     bottom: 3rem;
+`;
+
+
+export const ExpertPosition = styled.p`
+    font-family: 'PT Sans', sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 1.8rem;
+    line-height: 2.6rem;
+    text-align: center;
+    color: #000000;
+`;
+
+export const ExpertName = styled.p`
+    ${ExpertPosition} {
+        font-weight: bold;
+    }
+`;
+
+export const ExpertQuote = styled.h4`
+    ${Action} {
+        font-weight: bold;
+    }
 `;

@@ -7,8 +7,11 @@ import StyledMainPage from './styled';
 import Investigations from './Investigations';
 import Intro from './Intro';
 import Stories from './Stories';
+import Context from './Context';
 
-const MainPage = ({ stories, investigations, phone, lang, videos }) => (
+const MainPage = ({
+ stories, investigations, phone, lang, videos, context 
+}) => (
   <StyledMainPage>
     <Container>
       <Intro />
@@ -23,6 +26,11 @@ const MainPage = ({ stories, investigations, phone, lang, videos }) => (
         lang={lang}
         videos={videos}
       />
+      <Context
+        stories={context}
+        phone={phone}
+        lang={lang}
+       />
     </Container>
   </StyledMainPage>
 );

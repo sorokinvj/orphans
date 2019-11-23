@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import MapGL, { Popup, Marker } from 'react-map-gl';
 import styled from 'styled-components';
-import CityInfo from './CityInfo';
+import StoryInfo from './StoryInfo';
 import CityPin from './CityPin';
-import CITIES from './cities';
+import STORIES from './cities';
 
 const Map = styled.section`
   width: 100%;
@@ -11,12 +12,24 @@ const Map = styled.section`
   @media (max-width: 415px) {
     height: 40rem;
   }
+  .mapboxgl-popup {
+    .mapboxgl-popup-content {
+      background: transparent;
+      border: 2px solid #8e8e8e;
+      padding: 0;
+      border-radius: 0;
+    }
+    .mapboxgl-popup-tip {
+      border-right-color: #8e8e8e;
+
+    }
+  }
 `;
 
 export default class RussiaMap extends Component {
-  // static propTypes = {
-  //   prop: PropTypes,
-  // }
+  static propTypes = {
+    token: PropTypes.string.isRequired,
+  }
 
   state = {
     viewport: {
@@ -54,7 +67,7 @@ export default class RussiaMap extends Component {
           closeOnClick={false}
           onClose={() => this.setState({ popupInfo: null })}
         >
-          <CityInfo info={popupInfo} />
+          <StoryInfo info={popupInfo} />
         </Popup>
       )
     );
@@ -75,7 +88,7 @@ export default class RussiaMap extends Component {
           onViewportChange={this.onViewportChange}
           scrollZoom={false}
         >
-          {CITIES.map(this.renderCityMarker)}
+          {STORIES.map(this.renderCityMarker)}
           {this.renderPopup()}
         </MapGL>
       </Map>

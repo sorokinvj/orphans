@@ -35,7 +35,7 @@ app.prepare().then(() => {
     }));
 
   server.get('/', (req, res) => {
-    console.log('server.js lang in req', req.language);
+    // console.log('server.js lang in req', req.language);
     res.redirect(`/${req.language}`);
   });
 
@@ -43,6 +43,7 @@ app.prepare().then(() => {
 
   server.listen(port, (err) => {
     if (err) throw err;
+    // eslint-disable-next-line no-console
     console.log(`> Ready on http://localhost:${port}`);
   });
 });

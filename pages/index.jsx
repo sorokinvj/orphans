@@ -12,6 +12,7 @@ import MainPage from '../components/main';
 const { publicRuntimeConfig } = getConfig();
 
 class Index extends React.Component {
+  
   static contextType = LanguageContext
 
   state = {
@@ -19,6 +20,7 @@ class Index extends React.Component {
       stories: [],
       investigations: [],
       videos: [],
+      context: [],
     },
     currentLang: null,
   }
@@ -49,11 +51,19 @@ class Index extends React.Component {
         orderings: '[document.first_publication_date desc]',
       },
     );
+    const context = await client.query(
+      Prismic.Predicates.at('document.type', 'context'),
+      {
+        lang: language,
+        orderings: '[document.first_publication_date desc]',
+      },
+    );
     this.setState({
       content: {
         stories: stories.results,
         investigations: investigations.results,
         videos: videos.results,
+        context: context.results,
       },
     });
   }
@@ -70,7 +80,7 @@ class Index extends React.Component {
   render() {
     const { MapboxToken } = publicRuntimeConfig;
     const { content } = this.state;
-    const { stories, investigations, videos } = content;
+    const { stories, investigations, videos, context } = content;
     const { phone } = this.props;
     const lang = this.context;
     // console.log('main', this.state);
@@ -82,6 +92,7 @@ class Index extends React.Component {
           stories={stories}
           investigations={investigations}
           videos={videos}
+          context={context}
           phone={phone}
           lang={lang}
         />
