@@ -49,7 +49,7 @@ const Menu = ({ lng, router }) => (
           <li><Trans>Истории</Trans></li>
         </a>
       </Link>
-      <Link href={`/${lng}#about`}>
+      <Link href={`/about`}>
         <a>
           <li><Trans>О проекте</Trans></li>
         </a>
