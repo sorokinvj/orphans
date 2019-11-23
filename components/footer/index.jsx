@@ -24,9 +24,14 @@ const Styled = styled.div`
     @media (max-width: 415px) {
       margin: 5rem 0 3rem;
     }
-    li {
-      margin-bottom: 3rem;
+
+    ul {
+      margin: 0;
+      li {
+        margin-bottom: 3rem;
+      }
     }
+
     @media (max-width: 768px) {
       ul {
         margin: 0;
@@ -40,14 +45,13 @@ const Styled = styled.div`
   p {
     font-family: 'PT Sans';
     font-style: normal;
-    font-weight: bold;
     font-size: 1.6rem;
     line-height: 2.1rem;
     color: #FFFFFF;
     margin-top: 1rem;
   }
   .partner {
-    margin-top: 2rem;
+    margin: 2rem 0 0.5rem;
     width: 25rem;
     @media (max-width: 768px) {
       width: 20rem;
@@ -67,10 +71,15 @@ const Footer = () => (
         <Col md={{ size: 4, offset: 1 }}>
           <p>
             <Trans>
-              при поддержке
+              Этот материал создан при поддержке
             </Trans>
           </p>
           <img src="/static/logomediahub.png" alt="Open Media Hub logo" className="partner" />
+          <p>
+            <Trans>
+              на средства Европейского Союза
+            </Trans>
+          </p>
         </Col>
       </Row>
     </Container>
