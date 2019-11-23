@@ -49,11 +49,11 @@ const Navbar = styled.nav`
 
 const Nav = ({ router }) => (
 
-  <Navbar border={router.route !== '/' || '/about'}>
+  <Navbar border={router.route !== '/' || router.route === '/about'}>
     <Container>
-      <Logo white={router.route === '/' || '/about'} />
+      <Logo white={router.route === '/' || router.route === '/about'} />
       <Menu />
-      <LangSelector white={router.route === '/' || '/about'} />
+      <LangSelector white={router.route === '/' || router.route === '/about'} />
       {/* burger button and mobile menu */}
       <Popup
         modal

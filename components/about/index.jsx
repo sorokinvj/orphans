@@ -13,7 +13,7 @@ const AboutPage = ({ page }) => (
     <Container>
       <Row>
         <Col xs="12" md="9">
-          <H1>{RichText.render(page.data.title, linkResolver)}</H1>
+          <H1>{page.data.title[0].text}</H1>
           <Statement>
             {RichText.render(page.data.description, linkResolver)}
           </Statement>
@@ -21,7 +21,7 @@ const AboutPage = ({ page }) => (
       </Row>
       <Row>
         <Col xs="12" md="9">
-          <H1>{RichText.render(page.data.team_heading, linkResolver)}</H1>
+          <H1>{page.data.team_heading[0].text}</H1>
         </Col>
       </Row>
       <Row>

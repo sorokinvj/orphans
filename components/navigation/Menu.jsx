@@ -37,7 +37,7 @@ const Links = styled.div`
 
 
 const Menu = ({ lng, router }) => (
-  <Links className="menu" white={router.pathname === '/'}>
+  <Links className="menu" white={router.pathname === '/' || router.pathname === '/about'}>
     <ul>
       <Link href={`/${lng}#investigations`}>
         <a>
@@ -49,7 +49,7 @@ const Menu = ({ lng, router }) => (
           <li><Trans>Истории</Trans></li>
         </a>
       </Link>
-      <Link href={`/about`}>
+      <Link href={`/${lng}/about`}>
         <a>
           <li><Trans>О проекте</Trans></li>
         </a>

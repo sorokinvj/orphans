@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import getConfig from 'next/config';
+import { withRouter } from 'next/router';
 import Prismic from 'prismic-javascript';
 import { client } from '../prismic-configuration';
 
@@ -64,7 +65,9 @@ class About extends React.Component {
     phone: null,
   }
 
-  state = {};
+  state = {
+    currentLang: null,
+  };
 
   static async getInitialProps(ctx) {
     const {
@@ -81,6 +84,22 @@ class About extends React.Component {
     return { page: page.results[0] };
   }
 
+  async componentDidMount() {
+    const language = this.context;
+    this.setState({
+      currentLang: language,
+    });
+  }
+
+  async componentDidUpdate() {
+    const { currentLang } = this.state;
+    const { router } = this.props;
+    const language = this.context;
+    if (language !== currentLang) {
+      router.push(`/${language}/about`);
+    }
+  }
+
   render() {
     const { MapboxToken } = publicRuntimeConfig;
     const { phone, page } = this.props;
@@ -95,4 +114,4 @@ class About extends React.Component {
   }
 }
 
-export default About;
+export default withRouter(About);
