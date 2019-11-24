@@ -6,7 +6,6 @@ import { linkResolver } from '../../prismic-configuration';
 import StyledMainPage from './styled';
 import Statement from '../shared/styled/Statement';
 import H1 from '../shared/styled/H1';
-import TeamMember from './TeamMember';
 
 const AboutPage = ({ page }) => (
   <StyledMainPage>
@@ -19,22 +18,11 @@ const AboutPage = ({ page }) => (
           </Statement>
         </Col>
       </Row>
-      <Row>
-        <Col xs="12" md="9">
-          <H1>{page.data.team_heading[0].text}</H1>
-        </Col>
-      </Row>
-      <Row>
-        {page.data.team.map(member => (
-          <TeamMember member={member} key={member.name[0].text} />
-        ))}
-      </Row>
     </Container>
   </StyledMainPage>
 );
 
 AboutPage.propTypes = {
-  phone: PropTypes.string,
   page: PropTypes.shape({
     data: PropTypes.shape({
       description: PropTypes.arrayOf(
