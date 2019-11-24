@@ -4,35 +4,36 @@ import styled from 'styled-components';
 import { Place, ExpertQuote, Lead } from '../main/cards/styles';
 
 const PopupCard = styled.div`
-  background: linear-gradient(to bottom,rgba(0, 0, 0, 0.4),rgba(0, 0, 0, 0.4)), url('${props => props.background}');
+  background: linear-gradient(to bottom,rgba(255, 255, 255, 0.5),rgba(255, 255, 255, 0.5)), url('${props => props.background}');
   background-size: cover;
   height: 20rem;
   width: 30rem;
   padding: 3rem 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 
   ${Place} {
-    color: white;
+    text-align: center;
+    font-weight: bold;
     position: relative;
     bottom: 0;
+    color: red;
   }
 
   ${ExpertQuote} {
-    color: white;
+    color: black;
     font-family: Charter;
     font-style: normal;
     font-weight: bold;
-    font-size: 20px;
-    line-height: 30px;
+    font-size: 2.5rem;
+    line-height: 1.2;
+    text-align: center;
     margin-top: 1rem;
+    text-decoration: underline;
+    text-decoration-skip-ink: none;
   }
-
-  ${Lead} {
-    color: white;
-    text-align: left;
-    width: 100%;
-    margin-top: 0.5rem;
-  }
-
 `;
 
 export default class StoryInfo extends PureComponent {
@@ -58,14 +59,11 @@ export default class StoryInfo extends PureComponent {
         <a
           target="_new"
           href={info.url}
-        >
+          >
           <Place>{info.city}</Place>
           <ExpertQuote>
             {info.title}
           </ExpertQuote>
-          <Lead>
-            {info.lead}
-          </Lead>
         </a>
       </PopupCard>
     );
