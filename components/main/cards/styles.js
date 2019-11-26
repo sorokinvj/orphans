@@ -129,6 +129,9 @@ export const ExpertPosition = styled.p`
   line-height: 1.2;
   text-align: center;
   color: #000000;
+  @media (max-width: 768px) {
+    width: 80%;
+  }
 `;
 
 export const ExpertName = styled.p`

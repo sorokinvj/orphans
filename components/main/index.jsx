@@ -24,12 +24,12 @@ const MainPage = ({
         stories={stories}
         phone={phone}
         lang={lang}
-        videos={videos}
       />
       <Context
         stories={context}
         phone={phone}
         lang={lang}
+        videos={videos}
       />
     </Container>
   </StyledMainPage>

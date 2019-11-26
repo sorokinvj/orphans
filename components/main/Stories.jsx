@@ -9,7 +9,6 @@ import H1 from '../shared/styled/H1';
 import Card from './cards/Card';
 import Story from './cards/Story';
 import Quote from './Quote';
-import Video from './Video';
 
 const Stories = ({ stories, phone, lang, videos }) => (
   <>
@@ -44,13 +43,6 @@ const Stories = ({ stories, phone, lang, videos }) => (
           return null;
         })}
       </Col>
-    </Row>
-    <Row>
-      {videos.map(video => (
-        <Col xs="12" md="4" key={video.uid}>
-          <Video video={video} />
-        </Col>
-      ) )}
     </Row>
     <Row>
       {stories.map((story, index) => {
