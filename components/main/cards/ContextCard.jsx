@@ -22,14 +22,15 @@ const ContextCard = ({ item, phone, lang }) => (
       <a>
         <StoryWrap background={phone ? item.data.wallpaper.mob.url : item.data.wallpaper.url}>
           <img src={item.data.userpic.url} className="userpic" alt={item.data.name} />
+          {console.log(item)}
           <ExpertName>
-            {item.data.name[0].text}
+            {item.data.name[0] && item.data.name[0].text}
           </ExpertName>
           <ExpertPosition>
-            {item.data.position[0].text}
+            {item.data.position[0] && item.data.position[0].text}
           </ExpertPosition>
           <ExpertQuote>
-            {item.data.title[0].text}
+            {item.data.title[0] && item.data.title[0].text}
           </ExpertQuote>
         </StoryWrap>
       </a>
