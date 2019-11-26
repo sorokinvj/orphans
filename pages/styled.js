@@ -79,6 +79,19 @@ const Post = styled.div`
     border-bottom: 1px solid #b10007;
     /* box-shadow: inset 0 -1px 0 #b10007; */
   }
+
+  pre {
+    /* Цитаты */
+    font-size: 2.4rem;
+    white-space: normal;
+    text-align: center;
+    font-style: italic;
+    font-family: 'PT Serif';
+    margin: 4rem 2rem;
+    @media (max-width: 415px) {
+      margin: 4rem 1rem;
+    }
+  }
 `;
 
 export default Post;

@@ -68,7 +68,7 @@ class Story extends Component {
         <Post>
           <Container>
             <Row>
-              <Col md={{ size: 8, offset: 2 }} xs="12">
+              <Col xs={{ size: 12 }} md={{ size: 10, offset: 1 }} lg={{ size: 8, offset: 2 }}>
                 <div className="title">
                   {RichText.render(data.title, linkResolver)}
                 </div>
@@ -79,14 +79,14 @@ class Story extends Component {
                   {RichText.render(data.lead, linkResolver)}
                 </div>
               </Col>
-              <Col md={{ size: 8, offset: 2 }} xs="12">
+              <Col xs={{ size: 12 }} md={{ size: 10, offset: 1 }} lg={{ size: 8, offset: 2 }}>
                 <div className="hero">
                   <img src={phone ? data.wallpaper.mob.url : data.wallpaper.url} alt={data.title[0].text} />
                 </div>
               </Col>
             </Row>
             <Row>
-              <Col md={{ size: 8, offset: 2 }} xs="12">
+              <Col xs={{ size: 12 }} md={{ size: 10, offset: 1 }} lg={{ size: 8, offset: 2 }}>
                 <div className="content">
                   {RichText.render(data.body, linkResolver)}
                 </div>
