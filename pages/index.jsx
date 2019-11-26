@@ -41,7 +41,7 @@ class Index extends React.Component {
       Prismic.Predicates.at('document.type', 'investigation'),
       {
         lang: language,
-        orderings: '[document.first_publication_date desc]',
+        orderings: '[document.last_publication_date desc]',
       },
     );
     const videos = await client.query(
@@ -83,7 +83,7 @@ class Index extends React.Component {
     const { stories, investigations, videos, context } = content;
     const { phone } = this.props;
     const lang = this.context;
-    // console.log('main', this.state);
+    console.log('main', this.state);
     return (
       <>
         <MainHead />

@@ -10,7 +10,7 @@ import Stories from './Stories';
 import Context from './Context';
 
 const MainPage = ({
- stories, investigations, phone, lang, videos, context 
+  stories, investigations, phone, lang, videos, context,
 }) => (
   <StyledMainPage>
     <Container>
@@ -30,7 +30,7 @@ const MainPage = ({
         stories={context}
         phone={phone}
         lang={lang}
-       />
+      />
     </Container>
   </StyledMainPage>
 );

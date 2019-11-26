@@ -8,7 +8,7 @@ import {
 import H1 from '../shared/styled/H1';
 import ContextCard from './cards/ContextCard';
 
-const Context = ({ context, lang, phone }) => (
+const Context = ({ stories, lang, phone }) => (
   <>
     <Row id="context">
       <Col xs="12" md="12">
@@ -20,7 +20,7 @@ const Context = ({ context, lang, phone }) => (
       </Col>
     </Row>
     <Row>
-      {context.map(item => (
+      {stories.map(item => (
         <Col xs="12" md="4" key={item.id}>
           <ContextCard
             phone={phone}

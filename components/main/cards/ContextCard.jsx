@@ -18,7 +18,7 @@ const StyledStory = styled.div`
 
 const ContextCard = ({ item, phone, lang }) => (
   <StyledStory>
-    <Link href={`/${lang}/story/${item.uid}`}>
+    <Link href={`/${lang}/context/${item.uid}`}>
       <a>
         <StoryWrap background={phone ? item.data.wallpaper.mob.url : item.data.wallpaper.url}>
           <img src={item.data.userpic.url} className="userpic" alt={item.data.name} />

@@ -43,6 +43,13 @@ app.prepare().then(() => {
     })
   );
 
+  server.get("/:lang/context/:uid", (req, res) =>
+  app.render(req, res, "/context", {
+    lang: req.params.lang,
+    uid: req.params.uid
+  })
+);
+
   server.get("/", (req, res) => {
     // console.log('server.js lang in req', req.language);
     res.redirect(`/${req.language}`);
