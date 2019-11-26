@@ -4,7 +4,7 @@ import styled from 'styled-components';
 const Styled = styled.div`
   height: 100%;
   img {
-    width: 100%;
+    width: 70%;
     margin-top: 6rem;
     @media (max-width: 415px) {
       margin: 6rem 0 0 0;
