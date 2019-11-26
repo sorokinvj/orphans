@@ -5,7 +5,6 @@ import {
 } from '@bootstrap-styled/v4';
 import StyledMainPage from './styled';
 import Investigations from './Investigations';
-import Intro from './Intro';
 import Stories from './Stories';
 import Context from './Context';
 
@@ -14,7 +13,6 @@ const MainPage = ({
 }) => (
   <StyledMainPage>
     <Container>
-      <Intro />
       <Investigations
         investigations={investigations}
         phone={phone}
