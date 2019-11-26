@@ -21,7 +21,7 @@ const Links = styled.div`
       margin: 11rem auto 0 auto;
     }
     li {
-      color: white;
+      color: ${props => (props.white ? 'white' : 'black')};
       font-size: 1.6rem;
       text-transform: uppercase;
       display: inline-block;
@@ -37,7 +37,7 @@ const Links = styled.div`
 
 
 const Menu = ({ lng, router }) => (
-  <Links className="menu" white={router.pathname === '/' || router.pathname === '/about'}>
+  <Links className="menu" white={(router.route === '/') || (router.route === '/about')}>
     <ul>
       <Link href={`/${lng}#investigations`}>
         <a>
@@ -60,6 +60,7 @@ const Menu = ({ lng, router }) => (
 
 Menu.propTypes = {
   lng: PropTypes.string,
+  white: PropTypes.bool,
 };
 
 Menu.defaultProps = {
