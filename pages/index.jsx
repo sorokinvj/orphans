@@ -40,7 +40,7 @@ class Index extends React.Component {
       Prismic.Predicates.at('document.type', 'investigation'),
       {
         lang: language,
-        orderings: '[document.last_publication_date desc]',
+        orderings: '[my.investigation.priority]',
       },
     );
     const videos = await client.query(
