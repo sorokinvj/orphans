@@ -1,10 +1,11 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import MapGL, { Popup, Marker } from 'react-map-gl';
-import styled from 'styled-components';
-import StoryInfo from './StoryInfo';
-import CityPin from './CityPin';
-import STORIES from './cities';
+import React, { Component } from "react";
+import PropTypes from "prop-types";
+import MapGL, { Popup, Marker } from "react-map-gl";
+import styled from "styled-components";
+import StoryInfo from "./StoryInfo";
+import CityPin from "./CityPin";
+import STORIES from "./cities";
+import pin from "./pin.png";
 
 const Map = styled.section`
   width: 100%;
@@ -15,21 +16,31 @@ const Map = styled.section`
   .mapboxgl-popup {
     .mapboxgl-popup-content {
       background: transparent;
-      border: 2px solid #8e8e8e;
+      border: 2px solid white;
       padding: 0;
       border-radius: 0;
     }
     .mapboxgl-popup-tip {
-      border-right-color: #8e8e8e;
-
+      border-right-color: white;
+      border-width: 15px!important;
     }
+    .mapboxgl-popup-close-button {
+      font-size: 3rem;
+    }
+  }
+  .pin {
+    height: 4rem;
+    cursor: pointer;
+    position: absolute;
+    bottom: 0;
+    left: -12px;
   }
 `;
 
 export default class RussiaMap extends Component {
   static propTypes = {
     token: PropTypes.string.isRequired,
-  }
+  };
 
   state = {
     viewport: {
@@ -44,13 +55,22 @@ export default class RussiaMap extends Component {
     popupInfo: null,
   };
 
-  onViewportChange = (viewport) => {
+  onViewportChange = viewport => {
     this.setState({ viewport });
   };
 
   renderCityMarker = (city, index) => (
-    <Marker key={`marker-${index}`} longitude={city.longitude} latitude={city.latitude}>
-      <CityPin size={20} onClick={() => this.setState({ popupInfo: city })} />
+    <Marker
+      key={`marker-${index}`}
+      longitude={city.longitude}
+      latitude={city.latitude}
+    >
+      <img
+        src={pin}
+        className="pin"
+        onClick={() => this.setState({ popupInfo: city })}
+        alt=""
+      />
     </Marker>
   );
 
