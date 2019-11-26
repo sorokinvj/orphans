@@ -40,7 +40,7 @@ const Post = styled.div`
         color: #221E22;
         margin-bottom: 2.6rem;
     }
-    h2, strong {
+    h1, h2, strong {
         margin: 1rem 0;
         font-size: 2.5rem;
         line-height: 3.5rem;
