@@ -14,6 +14,7 @@ const GeneralHead = () => (
     <meta name="msapplication-TileColor" content="#0d2c54" />
     <meta name="msapplication-config" content="/static/favicons/browserconfig.xml" />
     <meta name="theme-color" content="#ffffff" />
+    <meta name="yandex-verification" content="5da9fcff28082854" />
   </Head>
 );
 export default GeneralHead;
