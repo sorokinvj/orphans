@@ -53,7 +53,8 @@ const Nav = ({ router }) => (
     <Container>
       <Logo white={router.route === '/' || router.route === '/about'} />
       <Menu />
-      <LangSelector white={router.route === '/' || router.route === '/about'} />
+      {/* убрал переключатель языка до появления переводов */}
+      {/* <LangSelector white={router.route === '/' || router.route === '/about'} /> */}
       {/* burger button and mobile menu */}
       <Popup
         modal
