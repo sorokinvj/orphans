@@ -82,7 +82,7 @@ const Quote = () => (
           общественный деятель
         </Trans>
       </div>
-      <img src="/static/gezalov.jpg" alt="Alexander Gezalov" />
+      <img src="/static/gezalov.png" alt="Alexander Gezalov" />
     </div>
   </Styled>
 );
