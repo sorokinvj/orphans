@@ -45,14 +45,15 @@ const Styled = styled.div`
   p {
     font-family: 'PT Sans';
     font-style: normal;
-    font-size: 1.6rem;
+    font-size: 1.2rem;
     line-height: 2.1rem;
-    color: #FFFFFF;
+    color: gray;
     margin-top: 1rem;
   }
   .partner {
     margin: 2rem 0 0.5rem;
-    width: 25rem;
+    width: 20rem;
+    opacity: 0.5;
     @media (max-width: 768px) {
       width: 20rem;
     }
