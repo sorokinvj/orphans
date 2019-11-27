@@ -1,6 +1,6 @@
 import App from 'next/app';
 import React from 'react';
-import { withRouter } from 'next/router';
+import Router, { withRouter } from 'next/router';
 import BootstrapProvider from '@bootstrap-styled/provider/lib/BootstrapProvider';
 // import cookies from 'next-cookies';
 import MobileDetect from 'mobile-detect';
@@ -9,6 +9,7 @@ import Footer from '../components/footer';
 import GeneralHead from '../components/GeneralHead';
 import GlobalStyle from '../components/globals';
 import AppWithI18n from '../components/AppWithI18n';
+import { initGA, logPageView } from '../components/shared/analytics';
 import 'mapbox-gl/dist/mapbox-gl.css';
 
 class MyApp extends App {
@@ -43,13 +44,12 @@ class MyApp extends App {
     };
   }
 
-  // componentDidMount() {
-  //   // выставляем куки, если их не было
-  //   // if (!this.props.hasCookies && typeof this.props.language !== 'undefined') {
-  //   //   document.cookie = `language=${this.props.lng};Expires=Wed, 22 Oct 2025 07:28:00 GMT`;
-  //   // }
-  //   console.log("app", Router.router.route);
-  // }
+  componentDidMount() {
+    // Google Analytics
+    initGA();
+    logPageView();
+    Router.router.events.on('routeChangeComplete', logPageView)
+  }
 
 
   render() {
