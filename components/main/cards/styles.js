@@ -1,20 +1,22 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const CardWrap = styled.div`
   border: 1px solid rgba(0, 0, 0, 0.5);
-  height: ${props => (props.size === "big" ? "41rem" : "36rem")};
+  height: ${props => (props.size === 'big' ? '41rem' : '36rem')};
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background: ${props =>
-    `linear-gradient(rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.6)), url(${props.background})`};
+  background: ${props => `linear-gradient(rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.6)), url(${props.background})`};
   background-size: cover;
   margin-top: 6rem;
   padding: 0 3rem;
   @media (max-width: 415px) {
     height: 31rem;
     margin-top: 3rem;
+  }
+  @media (max-width: 768px) {
+    padding: 0 1rem;
   }
 `;
 
@@ -66,13 +68,13 @@ export const StoryWrap = styled.div`
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  background: ${props =>
-    `linear-gradient(rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.8)), url(${props.background})`};
+  background: ${props => `linear-gradient(rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.8)), url(${props.background})`};
   background-size: cover;
   margin-top: 6rem;
   padding: 0 3rem;
   @media (max-width: 768px) {
     height: 36rem;
+    padding: 0 1rem;
   }
   @media (max-width: 415px) {
     margin-top: 3rem;
@@ -130,7 +132,10 @@ export const ExpertPosition = styled.p`
   text-align: center;
   color: #000000;
   @media (max-width: 768px) {
-    width: 80%;
+    width: 100%;
+  }
+  @media (max-width: 415px) {
+    width: 70%;
   }
 `;
 

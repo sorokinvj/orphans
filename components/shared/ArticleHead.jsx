@@ -11,13 +11,14 @@ const ArticleHead = ({
     uid,
   },
   articleURLtype,
+  language,
 }) => (
   <Head>
     <title>{title[0] && title[0].text}</title>
-    <meta property="og:url" content={`${URL}/${articleURLtype}/${uid}`} />
+    <meta property="og:url" content={`${URL}/${language}/${articleURLtype}/${uid}`} />
     <meta property="og:type" content="article" />
     <meta property="og:title" content={title[0] && title[0].text} />
-    <meta property="og:description" content={lead[0] && lead[0].text} />
+    <meta property="og:description" content={lead && lead[0] && lead[0].text} />
     <meta property="og:image" content={wallpaper && wallpaper.url} />
     <meta
       property="og:image:width"
@@ -33,20 +34,16 @@ const ArticleHead = ({
 ArticleHead.propTypes = {
   item: PropTypes.shape({
     data: PropTypes.shape({
-      title: PropTypes.arrayOf(
-        PropTypes.shape({
-          text: PropTypes.string,
-        }),
-      ),
-      lead: PropTypes.arrayOf(
-        PropTypes.shape({
-          text: PropTypes.string,
-        }),
-      ),
+      title: PropTypes.arrayOf(PropTypes.shape({
+        text: PropTypes.string,
+      })),
+      lead: PropTypes.arrayOf(PropTypes.shape({
+        text: PropTypes.string,
+      })),
       wallpaper: PropTypes.shape({
         dimensions: PropTypes.shape({
-          width: 730,
-          height: 490,
+          width: PropTypes.number,
+          height: PropTypes.number,
         }),
         url: PropTypes.string,
       }),
@@ -54,32 +51,13 @@ ArticleHead.propTypes = {
     uid: PropTypes.string,
   }),
   articleURLtype: PropTypes.string,
+  language: PropTypes.string,
 };
 
 ArticleHead.defaultProps = {
-  item: PropTypes.shape({
-    data: PropTypes.shape({
-      title: PropTypes.arrayOf(
-        PropTypes.shape({
-          text: '',
-        }),
-      ),
-      lead: PropTypes.arrayOf(
-        PropTypes.shape({
-          text: '',
-        }),
-      ),
-      wallpaper: PropTypes.shape({
-        dimensions: PropTypes.shape({
-          width: 730,
-          height: 490,
-        }),
-        url: '',
-      }),
-    }),
-    uid: '',
-  }),
+  item: {},
   articleURLtype: '',
+  language: 'ru',
 };
 
 export default ArticleHead;

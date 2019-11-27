@@ -14,6 +14,16 @@ const StyledStory = styled.div`
       margin-top: 3rem;
     }
   }
+  a {
+    cursor: pointer;
+  }
+
+  ${StoryWrap} {
+    @media (max-width: 768px) {
+      height: 45rem;
+      padding: 0 1rem;
+    }
+  }
 `;
 
 const ContextCard = ({ item, phone, lang }) => (

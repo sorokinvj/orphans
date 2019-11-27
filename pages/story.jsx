@@ -1,18 +1,22 @@
+/* eslint-disable camelcase */
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withRouter } from 'next/router';
-import { Container, Row, Col } from '@bootstrap-styled/v4';
+import {
+  Container,
+  Row,
+  Col,
+} from '@bootstrap-styled/v4';
 import dayjs from 'dayjs';
 import Prismic from 'prismic-javascript';
 import { RichText } from 'prismic-reactjs';
 import LanguageContext from '../components/context/LanguageContext';
 import { client, linkResolver } from '../prismic-configuration';
 import Post from './styled';
-import Loading from '../components/shared/Loading';
 import ArticleHead from '../components/shared/ArticleHead';
 
 class Story extends Component {
-  static contextType = LanguageContext;
+  static contextType = LanguageContext
 
   static propTypes = {
     router: PropTypes.shape({
@@ -22,112 +26,124 @@ class Story extends Component {
       push: PropTypes.func.isRequired,
     }),
     phone: PropTypes.string,
+    results: PropTypes.shape({
+      lang: PropTypes.string,
+      data: PropTypes.shape({
+        title: PropTypes.arrayOf(
+          PropTypes.shape({
+            text: PropTypes.string,
+          }),
+        ),
+        lead: PropTypes.arrayOf(
+          PropTypes.shape({
+            text: PropTypes.string,
+          }),
+        ),
+        body: PropTypes.arrayOf(
+          PropTypes.shape({
+            text: PropTypes.string,
+          }),
+        ),
+        wallpaper: PropTypes.shape({
+          mob: PropTypes.shape({
+            url: PropTypes.string,
+          }),
+          dimensions: PropTypes.shape({
+            width: PropTypes.number,
+            height: PropTypes.number,
+          }),
+          url: PropTypes.string,
+        }),
+      }),
+      first_publication_date: PropTypes.string,
+      uid: PropTypes.string,
+      alternate_languages: PropTypes.arrayOf(PropTypes.shape({
+        lang: PropTypes.string,
+        uid: PropTypes.string,
+      })),
+    }),
   };
 
   static defaultProps = {
     router: {},
     phone: null,
+    results: {},
   };
+
+  static async getInitialProps(ctx) {
+    const { query: { lang, uid } } = ctx;
+    const response = await client.query(
+      Prismic.Predicates.at('my.post.uid', uid), { lang },
+    );
+    return { results: response.results[0] };
+  }
 
   state = {
-    content: {
-      results: [],
-    },
-    isLoading: true,
     currentLang: null,
-  };
+  }
 
-  async componentDidMount() {
+  componentDidMount() {
     const language = this.context;
     this.setState({
       currentLang: language,
     });
-    const { router } = this.props;
-    const { uid } = router.query;
-    const response = await client.query(
-      Prismic.Predicates.at('my.post.uid', uid),
-      { lang: language },
-    );
-    this.setState({
-      content: {
-        results: response.results,
-      },
-      isLoading: false,
-    });
   }
 
-  async componentDidUpdate() {
-    const { router } = this.props;
-    const { content, currentLang } = this.state;
+  componentDidUpdate() {
+    const { router, results } = this.props;
     const language = this.context;
-    if (content.results.length > 0) {
-      // eslint-disable-next-line camelcase
-      const { alternate_languages } = content.results[0];
+    const { currentLang } = this.state;
+    if (currentLang !== language) {
+      const { alternate_languages } = results;
       if (alternate_languages[0]) {
         const { lang, uid } = alternate_languages[0];
-        if (currentLang !== language) {
-          router.push(`/${lang}/story/${uid}`);
-        }
+        router.push(`/${lang}/story/${uid}`);
       }
     }
   }
 
   render() {
-    const { phone } = this.props;
-    const { content, isLoading } = this.state;
-    if (isLoading) return <Loading visible={isLoading} />;
-    if (content.results.length > 0) {
-      // eslint-disable-next-line camelcase
-      const { data, first_publication_date } = content.results[0];
-      return (
-        <Post>
-          <ArticleHead item={content.results[0]} articleURLtype="story" />
-          <Container>
-            <Row>
-              <Col
-                xs={{ size: 12 }}
-                md={{ size: 10, offset: 1 }}
-                lg={{ size: 8, offset: 2 }}
-              >
-                <div className="title">
-                  {RichText.render(data.title, linkResolver)}
-                </div>
-                <p className="date">
-                  {dayjs(first_publication_date).format('DD/MM/YYYY')}
-                </p>
-                <div className="post-lead">
-                  {RichText.render(data.lead, linkResolver)}
-                </div>
-              </Col>
-              <Col
-                xs={{ size: 12 }}
-                md={{ size: 10, offset: 1 }}
-                lg={{ size: 8, offset: 2 }}
-              >
-                <div className="hero">
-                  <img
-                    src={phone ? data.wallpaper.mob.url : data.wallpaper.url}
-                    alt={data.title[0].text}
-                  />
-                </div>
-              </Col>
-            </Row>
-            <Row>
-              <Col
-                xs={{ size: 12 }}
-                md={{ size: 10, offset: 1 }}
-                lg={{ size: 8, offset: 2 }}
-              >
-                <div className="content">
-                  {RichText.render(data.body, linkResolver)}
-                </div>
-              </Col>
-            </Row>
-          </Container>
-        </Post>
-      );
-    }
-    return null;
+    const { phone, results } = this.props;
+    const {
+      data: {
+        title, lead, wallpaper, body,
+      }, first_publication_date,
+    } = results;
+    return (
+      <Post>
+        <ArticleHead item={results} articleURLtype="story" language={results.lang} />
+        <Container>
+          <Row>
+            <Col xs={{ size: 12 }} md={{ size: 10, offset: 1 }} lg={{ size: 8, offset: 2 }}>
+              <div className="title">
+                {RichText.render(title, linkResolver)}
+              </div>
+              <p className="date">
+                {dayjs(first_publication_date).format('DD/MM/YYYY')}
+              </p>
+              <div className="post-lead">
+                {RichText.render(lead, linkResolver)}
+              </div>
+            </Col>
+            <Col xs={{ size: 12 }} md={{ size: 10, offset: 1 }} lg={{ size: 8, offset: 2 }}>
+              <div className="hero">
+                <img
+                  src={phone ? wallpaper.mob.url : wallpaper.url}
+                  alt={title[0].text}
+                />
+              </div>
+            </Col>
+          </Row>
+          <Row>
+            <Col xs={{ size: 12 }} md={{ size: 10, offset: 1 }} lg={{ size: 8, offset: 2 }}>
+              <div className="content">
+                {RichText.render(body, linkResolver)}
+              </div>
+            </Col>
+          </Row>
+        </Container>
+      </Post>
+    );
   }
 }
 
