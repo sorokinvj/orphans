@@ -18,7 +18,8 @@ const Post = styled.div`
   .post-lead {
     margin-top: 1rem;
     font-size: 2rem;
-    line-height: 4.6rem;
+    line-height: 3rem;
+    margin-bottom: 1rem;
     font-weight: normal;
     font-style: italic;
     font-family: 'PT Sans', sans-serif;

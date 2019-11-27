@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { withRouter } from 'next/router';
 import {
   Container,
@@ -12,9 +13,25 @@ import LanguageContext from '../components/context/LanguageContext';
 import { client, linkResolver } from '../prismic-configuration';
 import Post from './styled';
 import Loading from '../components/shared/Loading';
+import ArticleHead from '../components/shared/ArticleHead';
 
 class Story extends Component {
   static contextType = LanguageContext
+
+  static propTypes = {
+    router: PropTypes.shape({
+      query: PropTypes.shape({
+        uid: PropTypes.string,
+      }),
+      push: PropTypes.func.isRequired,
+    }),
+    phone: PropTypes.string,
+  };
+
+  static defaultProps = {
+    router: {},
+    phone: null,
+  };
 
   state = {
     content: {
@@ -48,6 +65,7 @@ class Story extends Component {
     const { content, currentLang } = this.state;
     const language = this.context;
     if (content.results.length > 0) {
+      // eslint-disable-next-line camelcase
       const { alternate_languages } = content.results[0];
       if (alternate_languages[0]) {
         const { lang, uid } = alternate_languages[0];
@@ -63,9 +81,11 @@ class Story extends Component {
     const { content, isLoading } = this.state;
     if (isLoading) return <Loading visible={isLoading} />;
     if (content.results.length > 0) {
+      // eslint-disable-next-line camelcase
       const { data, first_publication_date } = content.results[0];
       return (
         <Post>
+          <ArticleHead item={content.results[0]} articleURLtype="investigation" />
           <Container>
             <Row>
               <Col xs={{ size: 12 }} md={{ size: 10, offset: 1 }} lg={{ size: 8, offset: 2 }}>
@@ -81,7 +101,10 @@ class Story extends Component {
               </Col>
               <Col xs={{ size: 12 }} md={{ size: 10, offset: 1 }} lg={{ size: 8, offset: 2 }}>
                 <div className="hero">
-                  <img src={phone ? data.wallpaper.mob.url : data.wallpaper.url} alt={data.title[0].text} />
+                  <img
+                    src={phone ? data.wallpaper.mob.url : data.wallpaper.url}
+                    alt={data.title[0].text}
+                  />
                 </div>
               </Col>
             </Row>

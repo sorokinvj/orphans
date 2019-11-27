@@ -36,7 +36,7 @@ module.exports = withBundleAnalyzer(withCSS({
     return config;
   },
   publicRuntimeConfig: { // Will be available on both server and client
-    WP_URL: 'https://orphansmap.com',
+    URL: 'https://orphansmap.com',
     MapboxToken: 'pk.eyJ1Ijoic29yb2tpbnZqIiwiYSI6ImNqeGRhZDF3NjBiNXozdXF3YWhjYmdnem8ifQ.z66X1naRqPvEuXj4mmIWRg',
   },
 }));

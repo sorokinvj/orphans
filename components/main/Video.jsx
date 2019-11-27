@@ -1,6 +1,6 @@
-import React from "react";
-import PropTypes from "prop-types";
-import styled from "styled-components";
+import React from 'react';
+import PropTypes from 'prop-types';
+import styled from 'styled-components';
 
 const Styled = styled.div`
   margin-top: 6rem;
@@ -56,14 +56,33 @@ const Styled = styled.div`
 const Video = ({ video }) => (
   <Styled>
     <div
+      // eslint-disable-next-line react/no-danger
       dangerouslySetInnerHTML={{ __html: video.data.url.html }}
       className="video-wrap"
     />
-    <h3>{video.data.title[0].text}</h3>
-    <p>{video.data.description[0].text}</p>
+    <h3>{video.data.title[0] && video.data.title[0].text}</h3>
+    <p>{video.data.description[0] && video.data.description[0].text}</p>
   </Styled>
 );
 
-Video.propTypes = {};
+Video.propTypes = {
+  video: PropTypes.shape({
+    data: PropTypes.shape({
+      url: PropTypes.shape({
+        html: PropTypes.string,
+      }),
+      title: PropTypes.arrayOf(PropTypes.shape({
+        text: PropTypes.string,
+      })),
+      description: PropTypes.arrayOf(PropTypes.shape({
+        text: PropTypes.string,
+      })),
+    }),
+  }),
+};
+
+Video.defaultProps = {
+  video: {},
+};
 
 export default Video;
