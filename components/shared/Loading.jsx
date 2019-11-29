@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Trans } from '@lingui/macro';
 import styled from 'styled-components';
 import Loader from 'react-loader-spinner';
 
