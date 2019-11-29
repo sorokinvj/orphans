@@ -25,7 +25,7 @@ const send = ({ email, name, letter }) => {
   const message = {
     from: 'Сайт Orphansmap <stories@orphansmap.com>',
     to: ['insider.sofia@gmail.com', 'stories@orphansmap.com'],
-    subject: `Новая история с сайта Orphansmap`,
+    subject: 'Новая история с сайта Orphansmap',
     text: body,
     replyTo: from,
   };

@@ -14,6 +14,7 @@ import LanguageContext from '../components/context/LanguageContext';
 import { client, linkResolver } from '../prismic-configuration';
 import Post from './styled';
 import ArticleHead from '../components/shared/ArticleHead';
+import FeedbackForm from '../components/shared/FeedbackForm';
 
 class Context extends Component {
   static contextType = LanguageContext
@@ -141,6 +142,7 @@ class Context extends Component {
               </div>
             </Col>
           </Row>
+          <FeedbackForm />
         </Container>
       </Post>
     );
