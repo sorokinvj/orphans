@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 const Post = styled.div`
   padding: 10rem 0;
@@ -12,49 +12,55 @@ const Post = styled.div`
     font-size: 3.7rem;
     line-height: 4.6rem;
     font-weight: bold;
-    font-family: 'Charter', serif;
+    font-family: "Charter", serif;
     color: black;
   }
-  .post-lead {
+  .post-lead,
+  .sending-status {
     margin-top: 1rem;
     font-size: 2rem;
     line-height: 3rem;
     margin-bottom: 1rem;
     font-weight: normal;
     font-style: italic;
-    font-family: 'PT Sans', sans-serif;
-    color: #221E22;
+    font-family: "PT Sans", sans-serif;
+    color: #221e22;
+    &.error {
+      color: #f74b01;
+    }
   }
   .date {
     margin-top: 1rem;
     text-transform: uppercase;
-    font-family: 'PT Sans', sans-serif;
+    font-family: "PT Sans", sans-serif;
     font-size: 1.4rem;
-    color: #F74B01;
+    color: #f74b01;
   }
   .content {
     margin-top: 3rem;
     p {
-        font-family: 'PT Serif', sans-serif;
-        font-size: 1.8rem;
-        line-height: 3rem;
-        color: #221E22;
-        margin-bottom: 2.6rem;
+      font-family: "PT Serif", sans-serif;
+      font-size: 1.8rem;
+      line-height: 3rem;
+      color: #221e22;
+      margin-bottom: 2.6rem;
     }
-    h1, h2, strong {
-        margin: 1rem 0;
-        font-size: 2.5rem;
-        line-height: 3.5rem;
-        font-weight: bold;
-        font-family: 'Charter', serif;
-        color: black;
+    h1,
+    h2,
+    strong {
+      margin: 1rem 0;
+      font-size: 2.5rem;
+      line-height: 3.5rem;
+      font-weight: bold;
+      font-family: "Charter", serif;
+      color: black;
     }
     h3 {
-      font-family: 'PT Sans', sans-serif;
+      font-family: "PT Sans", sans-serif;
       font-size: 3rem;
       font-weight: bold;
       line-height: 3.6rem;
-      color: #221E22;
+      color: #221e22;
       margin: 3.5rem 0 2.6rem 0;
     }
     img {
@@ -87,10 +93,40 @@ const Post = styled.div`
     white-space: normal;
     text-align: center;
     font-style: italic;
-    font-family: 'PT Serif';
+    font-family: "PT Serif";
     margin: 4rem 2rem;
     @media (max-width: 415px) {
       margin: 4rem 1rem;
+    }
+  }
+  .call-to-action {
+    margin: 1rem 0;
+    font-size: 2.5rem;
+    line-height: 3.5rem;
+    font-weight: bold;
+    font-family: "Charter", serif;
+    color: black;
+  }
+
+  .feedback-form {
+    input,
+    textarea,
+    button {
+      border: 1px solid black;
+      width: 100%;
+      padding: 1rem;
+      margin-top: 2rem;
+      font-family: "PT Serif", sans-serif;
+      font-size: 1.8rem;
+      line-height: 3rem;
+      color: #221e22;
+      background: white;
+    }
+    button {
+      width: 20rem;
+    }
+    textarea {
+      height: 30rem;
     }
   }
 `;

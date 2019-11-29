@@ -36,8 +36,8 @@ const Links = styled.div`
 `;
 
 
-const Menu = ({ lng, router }) => (
-  <Links className="menu" white={(router.route === '/') || (router.route === '/about')}>
+const Menu = ({ lng, router, white }) => (
+  <Links className="menu" white={white || (router.route === '/') || (router.route === '/about')}>
     <ul>
       <Link href={`/${lng}#investigations`}>
         <a>

@@ -6,7 +6,6 @@ import Loader from 'react-loader-spinner';
 
 const Styled = styled.div`
     width: 100%;
-    height: 50rem;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -23,11 +22,6 @@ const Styled = styled.div`
 
 const Loading = ({ visible }) => (
   <Styled>
-    <p>
-      <Trans>
-        Статья загружается
-      </Trans>
-    </p>
     <Loader
       visible={visible}
       type="Oval"
