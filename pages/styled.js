@@ -44,6 +44,9 @@ const Post = styled.div`
       line-height: 3rem;
       color: #221e22;
       margin-bottom: 2.6rem;
+      em {
+        font-style: italic;
+      }
     }
     h1,
     h2 {
