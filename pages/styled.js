@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components'
 
 const Post = styled.div`
   padding: 10rem 0;
@@ -12,7 +12,7 @@ const Post = styled.div`
     font-size: 3.7rem;
     line-height: 4.6rem;
     font-weight: bold;
-    font-family: "Charter", serif;
+    font-family: 'Charter', serif;
     color: black;
   }
   .post-lead,
@@ -23,7 +23,7 @@ const Post = styled.div`
     margin-bottom: 1rem;
     font-weight: normal;
     font-style: italic;
-    font-family: "PT Sans", sans-serif;
+    font-family: 'PT Sans', sans-serif;
     color: #221e22;
     &.error {
       color: #f74b01;
@@ -32,31 +32,33 @@ const Post = styled.div`
   .date {
     margin-top: 1rem;
     text-transform: uppercase;
-    font-family: "PT Sans", sans-serif;
+    font-family: 'PT Sans', sans-serif;
     font-size: 1.4rem;
     color: #f74b01;
   }
   .content {
     margin-top: 3rem;
     p {
-      font-family: "PT Serif", sans-serif;
+      font-family: 'PT Serif', sans-serif;
       font-size: 1.8rem;
       line-height: 3rem;
       color: #221e22;
       margin-bottom: 2.6rem;
     }
     h1,
-    h2,
-    strong {
+    h2 {
       margin: 1rem 0;
       font-size: 2.5rem;
       line-height: 3.5rem;
       font-weight: bold;
-      font-family: "Charter", serif;
+      font-family: 'Charter', serif;
       color: black;
     }
+    strong {
+      font-weight: bold;
+    }
     h3 {
-      font-family: "PT Sans", sans-serif;
+      font-family: 'PT Sans', sans-serif;
       font-size: 3rem;
       font-weight: bold;
       line-height: 3.6rem;
@@ -93,7 +95,7 @@ const Post = styled.div`
     white-space: normal;
     text-align: center;
     font-style: italic;
-    font-family: "PT Serif";
+    font-family: 'PT Serif';
     margin: 4rem 2rem;
     @media (max-width: 415px) {
       margin: 4rem 1rem;
@@ -104,7 +106,7 @@ const Post = styled.div`
     font-size: 2.5rem;
     line-height: 3.5rem;
     font-weight: bold;
-    font-family: "Charter", serif;
+    font-family: 'Charter', serif;
     color: black;
   }
 
@@ -116,7 +118,7 @@ const Post = styled.div`
       width: 100%;
       padding: 1rem;
       margin-top: 2rem;
-      font-family: "PT Serif", sans-serif;
+      font-family: 'PT Serif', sans-serif;
       font-size: 1.8rem;
       line-height: 3rem;
       color: #221e22;
@@ -129,6 +131,6 @@ const Post = styled.div`
       height: 30rem;
     }
   }
-`;
+`
 
-export default Post;
+export default Post
