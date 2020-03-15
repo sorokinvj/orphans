@@ -1,17 +1,17 @@
 {
+  "Расследования": {
+    "origin": [
+      [
+        "components/navigation/Menu.jsx",
+        44
+      ]
+    ]
+  },
   "Истории": {
     "origin": [
       [
         "components/navigation/Menu.jsx",
-        40
-      ]
-    ]
-  },
-  "Помощь": {
-    "origin": [
-      [
-        "components/navigation/Menu.jsx",
-        45
+        49
       ]
     ]
   },
@@ -19,7 +19,7 @@
     "origin": [
       [
         "components/navigation/Menu.jsx",
-        50
+        54
       ]
     ]
   }
