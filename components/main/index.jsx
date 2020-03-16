@@ -1,15 +1,18 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import {
-  Container,
-} from '@bootstrap-styled/v4';
-import StyledMainPage from './styled';
-import Investigations from './Investigations';
-import Stories from './Stories';
-import Context from './Context';
+import React from 'react'
+import PropTypes from 'prop-types'
+import { Container } from '@bootstrap-styled/v4'
+import StyledMainPage from './styled'
+import Investigations from './Investigations'
+import Stories from './Stories'
+import Context from './Context'
 
 const MainPage = ({
-  stories, investigations, phone, lang, videos, context,
+  stories,
+  investigations,
+  phone,
+  lang,
+  videos,
+  context,
 }) => (
   <StyledMainPage>
     <Container>
@@ -18,23 +21,12 @@ const MainPage = ({
         phone={phone}
         lang={lang}
       />
-      <Stories
-        stories={stories}
-        phone={phone}
-        lang={lang}
-      />
-      <Context
-        stories={context}
-        phone={phone}
-        lang={lang}
-        videos={videos}
-      />
+      <Stories stories={stories} phone={phone} lang={lang} />
+      <Context stories={context} phone={phone} lang={lang} videos={videos} />
     </Container>
   </StyledMainPage>
-);
+)
 
-MainPage.propTypes = {
+MainPage.propTypes = {}
 
-};
-
-export default MainPage;
+export default MainPage
