@@ -1,5 +1,5 @@
-import React from 'react';
-import styled from 'styled-components';
+import React from 'react'
+import styled from 'styled-components'
 
 const Styled = styled.div`
   height: 100%;
@@ -8,19 +8,42 @@ const Styled = styled.div`
     margin-top: 6rem;
     @media (max-width: 415px) {
       margin: 6rem 0 0 0;
+      width: 100%;
     }
   }
-`;
+`
 
-const Fact = ({ phone }) => (
+const Fact = ({ phone, lang }) => (
   <Styled>
-    {!phone
-    && <img src="/static/facts1.svg" alt="Facts about orphans in Russia" />
-    }
-    {phone
-    && <img src="/static/facts1_mob.svg" alt="Facts about orphans in Russia" />
-    }
+    {lang === 'ru' ? (
+      <>
+        {!phone && (
+          <img src="/static/facts1.svg" alt="Facts about orphans in Russia" />
+        )}
+        {phone && (
+          <img
+            src="/static/facts1_mob.svg"
+            alt="Facts about orphans in Russia"
+          />
+        )}
+      </>
+    ) : (
+      <>
+        {!phone && (
+          <img
+            src="/static/facts1_EN.svg"
+            alt="Facts about orphans in Russia"
+          />
+        )}
+        {phone && (
+          <img
+            src="/static/facts1_EN_mob.svg"
+            alt="Facts about orphans in Russia"
+          />
+        )}
+      </>
+    )}
   </Styled>
-);
+)
 
-export default Fact;
+export default Fact
