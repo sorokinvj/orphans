@@ -1,8 +1,11 @@
 {
-	"folders": [
-		{
-			"path": "."
-		}
-	],
-	"settings": {}
+  "folders": [
+    {
+      "path": "."
+    },
+    {
+      "path": "/Users/vladislavsorokin/webprojects/logi-apollo"
+    }
+  ],
+  "settings": {}
 }
