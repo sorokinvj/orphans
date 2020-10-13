@@ -22,7 +22,9 @@ const MainPage = ({
         lang={lang}
       />
       <Stories stories={stories} phone={phone} lang={lang} />
-      <Context stories={context} phone={phone} lang={lang} videos={videos} />
+      {context.length ? (
+        <Context stories={context} phone={phone} lang={lang} videos={videos} />
+      ) : null}
     </Container>
   </StyledMainPage>
 )

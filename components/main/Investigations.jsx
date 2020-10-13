@@ -55,7 +55,7 @@ const Investigations = ({ investigations, phone, lang }) => {
       </Row>
       <Row>
         <Col xs="12" md="12">
-          <Fact phone={phone} />
+          <Fact phone={phone} lang={lang} />
         </Col>
       </Row>
     </>
