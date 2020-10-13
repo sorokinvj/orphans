@@ -1,20 +1,25 @@
-import App from 'next/app';
-import React from 'react';
-import Router, { withRouter } from 'next/router';
-import BootstrapProvider from '@bootstrap-styled/provider/lib/BootstrapProvider';
+import App from 'next/app'
+import { Amplify } from 'aws-amplify'
+import React from 'react'
+import Router, { withRouter } from 'next/router'
+import BootstrapProvider from '@bootstrap-styled/provider/lib/BootstrapProvider'
 // import cookies from 'next-cookies';
-import MobileDetect from 'mobile-detect';
-import Nav from '../components/navigation';
-import Footer from '../components/footer';
-import GeneralHead from '../components/GeneralHead';
-import GlobalStyle from '../components/globals';
-import AppWithI18n from '../components/AppWithI18n';
-import { initGA, logPageView } from '../components/shared/analytics';
-import 'mapbox-gl/dist/mapbox-gl.css';
+import MobileDetect from 'mobile-detect'
+import Nav from '../components/navigation'
+import Footer from '../components/footer'
+import GeneralHead from '../components/GeneralHead'
+import GlobalStyle from '../components/globals'
+import AppWithI18n from '../components/AppWithI18n'
+import { initGA, logPageView } from '../components/shared/analytics'
+import 'mapbox-gl/dist/mapbox-gl.css'
+
+import awsExports from '../aws-exports'
+
+Amplify.configure({ ...awsExports, ssr: true })
 
 class MyApp extends App {
   static async getInitialProps({ Component, ctx }) {
-    let pageProps = {};
+    let pageProps = {}
 
     // добываем значение языка из пользовательских кукис
     // const { language, useragreedwithcookies } = cookies(ctx);
@@ -24,14 +29,14 @@ class MyApp extends App {
     // определяем тип устройства, чтобы потом react-media
     // рендерила именно ту версию компонента, которая
     // совпадает с серверным html
-    const { req } = ctx;
-    const md = new MobileDetect(req ? req.headers['user-agent'] : '');
-    const phone = md.phone();
-    const tablet = md.tablet();
+    const { req } = ctx
+    const md = new MobileDetect(req ? req.headers['user-agent'] : '')
+    const phone = md.phone()
+    const tablet = md.tablet()
 
     // Компонент получает свои pageProps с сервера
     if (Component.getInitialProps) {
-      pageProps = await Component.getInitialProps(ctx);
+      pageProps = await Component.getInitialProps(ctx)
     }
     // возвращаем pageProps с сервера и значение языка
     return {
@@ -41,21 +46,25 @@ class MyApp extends App {
       phone,
       tablet,
       // cookieConsent,
-    };
+    }
   }
 
   componentDidMount() {
     // Google Analytics
-    initGA();
-    logPageView();
+    initGA()
+    logPageView()
     Router.router.events.on('routeChangeComplete', logPageView)
   }
 
-
   render() {
     const {
-      Component, pageProps, phone, tablet, cookieConsent, router,
-    } = this.props;
+      Component,
+      pageProps,
+      phone,
+      tablet,
+      cookieConsent,
+      router,
+    } = this.props
     // console.log('_app', this.props);
 
     return (
@@ -68,8 +77,8 @@ class MyApp extends App {
           <Footer />
         </BootstrapProvider>
       </AppWithI18n>
-    );
+    )
   }
 }
 
-export default withRouter(MyApp);
+export default withRouter(MyApp)
